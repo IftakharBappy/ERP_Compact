@@ -70,7 +70,6 @@ namespace ERP_Compact.Controllers
         public ActionResult Index()
         {
            
-
             return View();
         }
 
