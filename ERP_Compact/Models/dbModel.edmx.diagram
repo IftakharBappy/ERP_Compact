@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c3953e7b84554de5a2558d5071001425" Name="Diagram1">
+        <EntityTypeShape EntityType="ERPMgtModel.Aisle" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.Asset" Width="1.5" PointX="14.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.AssetCategory" Width="1.5" PointX="9.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.AssetSubcategory" Width="1.5" PointX="12" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.Company" Width="1.5" PointX="10.5" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.Customer" Width="1.5" PointX="7.5" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.Department" Width="1.5" PointX="8.25" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.Designation" Width="1.5" PointX="8.25" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.District" Width="1.5" PointX="3" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.Division" Width="1.5" PointX="0.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.Forms" Width="1.5" PointX="12.75" PointY="29.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.ImageFile" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.Item" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.ItemCategory" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.ItemSubcategory" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.ItemType" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.Manufacturer" Width="1.5" PointX="12" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.Modules" Width="1.5" PointX="12.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.ProductionProcessSetup" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.Row_Store" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.Shelf" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.SubModule" Width="1.5" PointX="10.5" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.Supplier" Width="1.5" PointX="7.5" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.Tax" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.Unit" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.Upazilla" Width="1.5" PointX="5.25" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.User" Width="1.5" PointX="10.5" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.Usergroup" Width="1.5" PointX="12.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.UsergroupToForm" Width="1.5" PointX="15" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.UsergroupToModule" Width="1.5" PointX="15" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.UsergroupToSubmodule" Width="1.5" PointX="15" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERPMgtModel.Warehouse" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="ERPMgtModel.FK_Asset_AssetCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_Asset_AssetSubcategory" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_Asset_Manufacturer" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_Asset_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_AssetSubcategory_AssetCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_Company_District" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_Company_Division" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_Company_Upazilla" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_Customer_Upazilla" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_User_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_User_Designation" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_District_Division" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_Upazilla_District" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_Warehouse_District" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_Warehouse_Division" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_Forms_Modules" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_Forms_SubModule" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_UsergroupToForm_Forms" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_Item_ItemCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_Item_ItemSubcategory" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_Item_ItemType" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_Item_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_Subcategory_ItemCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_SubModule_Modules" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_UsergroupToModule_Modules" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_UsergroupToSubmodule_SubModule" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_Supplier_Upazilla" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_User_Upazilla" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_Warehouse_Upazilla" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_UsergroupToForm_Usergroup" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_UsergroupToModule_Usergroup" ManuallyRouted="false" />
+        <AssociationConnector Association="ERPMgtModel.FK_UsergroupToSubmodule_Usergroup" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

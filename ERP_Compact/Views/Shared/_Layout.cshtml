@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - ERP</title>
+    <link href="~/Content/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/style.css" rel="stylesheet" />
+    <link href="~/Content/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+
+
+    <script src="~/Content/assets/js/jquery-1.11.1.js"></script>
+    <script src="~/Content/assets/js/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Content/assets/js/jquery.metisMenu.js"></script>
+    <script src="~/Content/assets/js/custom.js"></script>
+
+</head>
+<body>
+    @using ERP_Compact.Models
+
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                    <img src="~/Content/ntr.png" />
+                </a>
+            </div>
+
+            <div class="notifications-wrapper">
+                <ul class="nav">
+                    <li><div style="padding-left:400px;"></div></li>
+                    <li>
+
+                        <img src="~/Content/ntr.png" />
+                    </li>
+
+
+                    <li style="float:right;">
+
+                        <img src="~/Content/ntr.png" />
+                    </li>
+                    <li style="float:right;" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user-plus"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                @*<a href="@Url.Action("Profile","MgtUser")"><i class="fa fa-sign-out"></i> @GlobalClass.LoginUser.PersonName</a>*@
+                                <i class="fa fa-sign-out"></i> Dev
+                            </li>
+                            @*<li>ID : @Html.DisplayFor(m => GlobalClass.LoginUser.NationalID)</li>*@
+                            <li>ID : Dev ID</li>
+                            <li class="divider"></li>
+                            <li>
+                                @*<a href="@Url.Action("ChangeMyPassword","MgtUser")"><i class="fa fa-sign-out"></i> Change Pasword</a>*@
+                                <i class="fa fa-sign-out"></i> test
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                @*<a href="@Url.Action("Logout","Home")"><i class="fa fa-sign-out"></i> Logout</a>*@
+                                <i class="fa fa-sign-out"></i> test
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a href="@Url.Action("Index", "Home")"><i class="fa fa-dashboard "></i>Dashboard</a>
+                    </li>
+
+                    @*@foreach (var item in GlobalClass.ModuleList)
+                    {
+
+                        <li>
+                            <a href="#"><i class="fa fa-sitemap "></i>@Html.DisplayFor(modelItem => item.ModuleName) <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                @foreach (var fItem in item.formList)
+                                {
+                                    <li>
+                                        <a href="@Url.Action(fItem.FormView, fItem.FormController)"><i class="fa fa-cogs "></i>@Html.DisplayFor(model => fItem.FormName)</a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </li>
+                    }*@
+                </ul>
+
+
+            </div>
+
+        </nav>
+        <!-- /. SIDEBAR MENU (navbar-side) -->
+        <div id="page-wrapper" class="page-wrapper-cls">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="page-head-line">@RenderSection("PageHeader", required: false)</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @RenderBody()
+                    </div>
+                </div>
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <footer>
+        &copy; 2017 Suresoft Ltd |  <a href="http://www.suresoft.com" target="_blank">www.suresoft.com</a>
+    </footer>
+</body>
+</html>

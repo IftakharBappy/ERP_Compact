@@ -1,0 +1,128 @@
+﻿@model ERP_Compact.Models.GISclass
+@{
+    ViewBag.Title = "Division";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.dataTables.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.js"></script>
+<script type="text/javascript">
+        $(function () {
+
+            $('#ctable').dataTable();
+
+        });
+
+</script>
+
+<script src="~/Scripts/AutoComplete/scDivision.js"></script>
+<script type="text/javascript">
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+        $(document).ready(function () {
+            $('#msgSuccess').hide();
+
+            $(".discussion-comment").click(function (event) {
+                $('#DivisionKey').val($(this).attr("discussion-id"));
+                $('#myModal').modal('show');
+                $('#btnUpdate').show();
+                $('#btnAdd').hide();
+                var w = "#DivisionKey";
+                var url = '@Url.Content("~/")' + "Utility/LoadDivision";
+                $.getJSON(url, { SelectID: $(w).val() }, function (data) {
+
+                    $('#DivisionID').val(data["DivisionID"]);
+                    $('#DivisionName').val(data["DivisionName"]);
+
+
+                });
+
+
+            });
+        });
+
+</script>
+
+
+
+<div class="panel panel-flat">
+    <div class="panel-heading">
+
+        <h2>
+            List of Division
+        </h2>
+
+    </div>
+    <div class="panel-body">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Division</button>
+    </div>
+    <div class="panel-body">
+
+        <table class="table table-bordered table-hover datatable-highlight" id="ctable">
+            <thead><tr><th>Name</th><th>Division ID</th><th>Action</th></tr></thead>
+            <tbody>
+
+                @foreach (var item in Model.ModuleList)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DivisionName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DivisionID)
+                        </td>
+
+                        <td>
+                            <a class="discussion-comment" discussion-id="@item.DivisionKey" href="#">Edit</a> ||
+
+                            <a href="#" onclick="Delete('@item.DivisionKey')">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Add New Division</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DivisionID)
+                            @Html.HiddenFor(model => model.DivisionKey, new { id = "DivisionKey" })
+                            @Html.TextBoxFor(model => model.DivisionID, new {placeholder = " ID", id = "DivisionID", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DivisionID, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DivisionName)
+                            @Html.TextBoxFor(model => model.DivisionName, new { @required = "required", placeholder = " Name", id = "DivisionName", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DivisionName, "", new { @class = "text-danger" })
+
+                        </div>
+
+                    </form>
+                    <div class="form-group" id="msgSuccess"><h4 class="alert alert-danger">Data is successfully Saved on database.</h4></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                    <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

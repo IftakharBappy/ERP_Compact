@@ -1,0 +1,2451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ERPMgtModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Aisle">
+          <Key>
+            <PropertyRef Name="AisleKey" />
+          </Key>
+          <Property Name="AisleKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AisleID" Type="nvarchar(max)" />
+          <Property Name="AisleName" Type="nvarchar(max)" />
+          <Property Name="AisleLevel" Type="int" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="WarehouseKey" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Asset">
+          <Key>
+            <PropertyRef Name="ItemKey" />
+          </Key>
+          <Property Name="ItemKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ItemID" Type="nvarchar(max)" />
+          <Property Name="ItemName" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ProductID" Type="nvarchar(max)" />
+          <Property Name="logo" Type="image" />
+          <Property Name="Logotype" Type="nvarchar(max)" />
+          <Property Name="UnitKey" Type="uniqueidentifier" />
+          <Property Name="Unitsize" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CategoryKey" Type="uniqueidentifier" />
+          <Property Name="SubcategoryKey" Type="uniqueidentifier" />
+          <Property Name="ModelNo" Type="nvarchar(max)" />
+          <Property Name="ItemColor" Type="nvarchar(max)" />
+          <Property Name="ReorderLevel" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="ManufacturerKey" Type="uniqueidentifier" />
+          <Property Name="StartYear" Type="int" />
+          <Property Name="DepreciationFactor" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="AssetLife" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="AssetCategory">
+          <Key>
+            <PropertyRef Name="CategoryKey" />
+          </Key>
+          <Property Name="CategoryKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar(max)" />
+          <Property Name="CategoryID" Type="nvarchar(max)" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="AssetSubcategory">
+          <Key>
+            <PropertyRef Name="SubcategoryKey" />
+          </Key>
+          <Property Name="SubcategoryKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SubcategoryName" Type="nvarchar(max)" />
+          <Property Name="SubcategoryID" Type="nvarchar(max)" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CategoryKey" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyKey" />
+          </Key>
+          <Property Name="CompanyKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyID" Type="nvarchar(max)" />
+          <Property Name="CompanyName" Type="nvarchar(max)" />
+          <Property Name="CompanyAddress" Type="nvarchar(max)" />
+          <Property Name="CompanyPhone" Type="nvarchar(max)" />
+          <Property Name="CompanyMobile" Type="nvarchar(max)" />
+          <Property Name="CompanyEmail" Type="nvarchar(max)" />
+          <Property Name="CompanyWebsite" Type="nvarchar(max)" />
+          <Property Name="CompanyFax" Type="nvarchar(max)" />
+          <Property Name="ContactPersonName" Type="nvarchar(max)" />
+          <Property Name="ContactPersonNo" Type="nvarchar(max)" />
+          <Property Name="Logo" Type="image" />
+          <Property Name="LogoType" Type="varchar(max)" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="DivisionKey" Type="uniqueidentifier" />
+          <Property Name="DistrictKey" Type="uniqueidentifier" />
+          <Property Name="UpazillaKey" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerKey" />
+          </Key>
+          <Property Name="CustomerKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="WarehouseKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CustomeID" Type="nvarchar(max)" />
+          <Property Name="CustomerName" Type="nvarchar(max)" />
+          <Property Name="CustomeAddress" Type="nvarchar(max)" />
+          <Property Name="CPhone" Type="nvarchar(max)" />
+          <Property Name="CMobile" Type="nvarchar(max)" />
+          <Property Name="CEmail" Type="nvarchar(max)" />
+          <Property Name="CWebsite" Type="nvarchar(max)" />
+          <Property Name="CFax" Type="nvarchar(max)" />
+          <Property Name="ContactPersonName" Type="nvarchar(max)" />
+          <Property Name="ContactPersonNo" Type="nvarchar(max)" />
+          <Property Name="Logo" Type="image" />
+          <Property Name="LogoType" Type="varchar(max)" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="DiscountPerc" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DiscountAmt" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Incentive" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="UpazillaKey" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentKey" />
+          </Key>
+          <Property Name="DepartmentKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DepartmentID" Type="nvarchar(max)" />
+          <Property Name="DepartmentName" Type="nvarchar(max)" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="WarehouseKey" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Designation">
+          <Key>
+            <PropertyRef Name="DesignationKey" />
+          </Key>
+          <Property Name="DesignationKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DesignationtID" Type="nvarchar(max)" />
+          <Property Name="DesignationName" Type="nvarchar(max)" />
+          <Property Name="DesignationLevel" Type="int" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="WarehouseKey" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="DistrictKey" />
+          </Key>
+          <Property Name="DistrictKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DistrictID" Type="nvarchar(max)" />
+          <Property Name="DistrictName" Type="nvarchar(max)" />
+          <Property Name="DivisionKey" Type="uniqueidentifier" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="Division">
+          <Key>
+            <PropertyRef Name="DivisionKey" />
+          </Key>
+          <Property Name="DivisionKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DivisionID" Type="nvarchar(max)" />
+          <Property Name="DivisionName" Type="nvarchar(max)" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="Forms">
+          <Key>
+            <PropertyRef Name="FormID" />
+          </Key>
+          <Property Name="FormID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModuleID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FormName" Type="nvarchar(max)" />
+          <Property Name="FormLevel" Type="int" />
+          <Property Name="FormController" Type="nvarchar(max)" />
+          <Property Name="ViewName" Type="nvarchar(max)" />
+          <Property Name="SubModuleID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="ImageFile">
+          <Key>
+            <PropertyRef Name="ImageFileKey" />
+          </Key>
+          <Property Name="ImageFileKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="varchar(max)" />
+          <Property Name="FileType" Type="varchar(max)" />
+          <Property Name="FileContent" Type="image" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ItemKey" />
+          </Key>
+          <Property Name="ItemKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ItemID" Type="nvarchar(max)" />
+          <Property Name="ItemName" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ProductID" Type="nvarchar(max)" />
+          <Property Name="logo" Type="image" />
+          <Property Name="UnitKey" Type="uniqueidentifier" />
+          <Property Name="Unitsize" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CategoryKey" Type="uniqueidentifier" />
+          <Property Name="SubcategoryKey" Type="uniqueidentifier" />
+          <Property Name="TypeKey" Type="uniqueidentifier" />
+          <Property Name="ModelNo" Type="nvarchar(max)" />
+          <Property Name="ItemColor" Type="nvarchar(max)" />
+          <Property Name="ReorderLevel" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="ItemCategory">
+          <Key>
+            <PropertyRef Name="CategoryKey" />
+          </Key>
+          <Property Name="CategoryKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar(max)" />
+          <Property Name="CategoryID" Type="nvarchar(max)" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="ItemSubcategory">
+          <Key>
+            <PropertyRef Name="SubcategoryKey" />
+          </Key>
+          <Property Name="SubcategoryKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SubcategoryName" Type="nvarchar(max)" />
+          <Property Name="SubcategoryID" Type="nvarchar(max)" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="CategoryKey" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="ItemType">
+          <Key>
+            <PropertyRef Name="TypeKey" />
+          </Key>
+          <Property Name="TypeKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar(max)" />
+          <Property Name="TypeID" Type="nvarchar(max)" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="Manufacturer">
+          <Key>
+            <PropertyRef Name="ManufacturerKey" />
+          </Key>
+          <Property Name="ManufacturerKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ManufacturerID" Type="nvarchar(max)" />
+          <Property Name="ManufacturerName" Type="nvarchar(max)" />
+          <Property Name="ManufacturerAddress" Type="nvarchar(max)" />
+          <Property Name="CountryOfOrigin" Type="nvarchar(max)" />
+          <Property Name="CPhone" Type="nvarchar(max)" />
+          <Property Name="CEmail" Type="nvarchar(max)" />
+          <Property Name="CWebsite" Type="nvarchar(max)" />
+          <Property Name="CFax" Type="nvarchar(max)" />
+          <Property Name="Logo" Type="image" />
+          <Property Name="LogoType" Type="nvarchar(max)" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="Modules">
+          <Key>
+            <PropertyRef Name="ModuleID" />
+          </Key>
+          <Property Name="ModuleID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModuleName" Type="nvarchar(max)" />
+          <Property Name="ModuleLevel" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductionProcessSetup">
+          <Key>
+            <PropertyRef Name="ProcessKey" />
+          </Key>
+          <Property Name="ProcessKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProcessID" Type="nvarchar(max)" />
+          <Property Name="ProcessName" Type="nvarchar(max)" />
+          <Property Name="ProcessLevel" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="WarehouseKey" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Row_Store">
+          <Key>
+            <PropertyRef Name="RowKey" />
+          </Key>
+          <Property Name="RowKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RowID" Type="nvarchar(max)" />
+          <Property Name="RowName" Type="nvarchar(max)" />
+          <Property Name="RowLevel" Type="int" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="WarehouseKey" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Shelf">
+          <Key>
+            <PropertyRef Name="ShelfKey" />
+          </Key>
+          <Property Name="ShelfKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ShelfID" Type="nvarchar(max)" />
+          <Property Name="ShelfName" Type="nvarchar(max)" />
+          <Property Name="ShelfLevel" Type="int" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="WarehouseKey" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="SubModule">
+          <Key>
+            <PropertyRef Name="SubModuleID" />
+          </Key>
+          <Property Name="SubModuleID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModuleID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SubModuleName" Type="nvarchar(max)" />
+          <Property Name="SubModuleLevel" Type="int" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SupplierName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SupplierAddress" Type="nvarchar(max)" />
+          <Property Name="SupplierPhone" Type="nvarchar(max)" />
+          <Property Name="SupplierMobile" Type="nvarchar(max)" />
+          <Property Name="SupplierEmail" Type="nvarchar(max)" />
+          <Property Name="SupplierWebsite" Type="nvarchar(max)" />
+          <Property Name="SupplierFax" Type="nvarchar(max)" />
+          <Property Name="WarehouseKey" Type="uniqueidentifier" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="ContactPersonName" Type="nvarchar(max)" />
+          <Property Name="ContactPersonNo" Type="nvarchar(max)" />
+          <Property Name="Logo" Type="image" />
+          <Property Name="LogoType" Type="varchar(max)" />
+          <Property Name="DiscountPerc" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DiscountAmt" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Incentive" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="UpazillaKey" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Tax">
+          <Key>
+            <PropertyRef Name="TaxKey" />
+          </Key>
+          <Property Name="TaxKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TaxID" Type="nvarchar(max)" />
+          <Property Name="Amt" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="WarehouseKey" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="UnitKey" />
+          </Key>
+          <Property Name="UnitKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UnitID" Type="nvarchar" MaxLength="50" />
+          <Property Name="UnitName" Type="nvarchar(max)" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="Upazilla">
+          <Key>
+            <PropertyRef Name="UpazillaKey" />
+          </Key>
+          <Property Name="UpazillaKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UpazillaID" Type="nvarchar(max)" />
+          <Property Name="UpazillaName" Type="nvarchar(max)" />
+          <Property Name="DistrictKey" Type="uniqueidentifier" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserKey" />
+          </Key>
+          <Property Name="UserKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DesignationKey" Type="uniqueidentifier" />
+          <Property Name="DepartmentKey" Type="uniqueidentifier" />
+          <Property Name="PersonName" Type="nvarchar(max)" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="varchar(max)" />
+          <Property Name="Address" Type="varchar(max)" />
+          <Property Name="UpazillaKey" Type="uniqueidentifier" />
+          <Property Name="NationalID" Type="varchar" MaxLength="50" />
+          <Property Name="RegistrationDate" Type="datetime" />
+          <Property Name="BloodGroup" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmergencyPhone" Type="nvarchar" MaxLength="250" />
+          <Property Name="Relationship" Type="nvarchar(max)" />
+          <Property Name="Pic" Type="image" />
+          <Property Name="pictype" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Username" Type="nvarchar(max)" />
+          <Property Name="WarhouseKey" Type="uniqueidentifier" />
+          <Property Name="GroupKey" Type="uniqueidentifier" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="Usergroup">
+          <Key>
+            <PropertyRef Name="GroupKey" />
+          </Key>
+          <Property Name="GroupKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="UsergroupToForm">
+          <Key>
+            <PropertyRef Name="UsergroupToFormKey" />
+          </Key>
+          <Property Name="UsergroupToFormKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FormKey" Type="uniqueidentifier" />
+          <Property Name="GroupKey" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="UsergroupToModule">
+          <Key>
+            <PropertyRef Name="GroupToModuleKey" />
+          </Key>
+          <Property Name="GroupToModuleKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModuleID" Type="uniqueidentifier" />
+          <Property Name="GroupKey" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="UsergroupToSubmodule">
+          <Key>
+            <PropertyRef Name="GroupToSubModuleKey" />
+          </Key>
+          <Property Name="GroupToSubModuleKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SubModuleID" Type="uniqueidentifier" />
+          <Property Name="GroupKey" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="WarehouseKey" />
+          </Key>
+          <Property Name="WarehouseKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="WahouseID" Type="nvarchar(max)" />
+          <Property Name="WahouseName" Type="nvarchar(max)" />
+          <Property Name="WahouseAddress" Type="nvarchar(max)" />
+          <Property Name="WahousePhone" Type="nvarchar(max)" />
+          <Property Name="WahouseMobile" Type="nvarchar(max)" />
+          <Property Name="WahouseEmail" Type="nvarchar(max)" />
+          <Property Name="WahouseWebsite" Type="nvarchar(max)" />
+          <Property Name="WahouseFax" Type="nvarchar(max)" />
+          <Property Name="ContactPersonName" Type="nvarchar(max)" />
+          <Property Name="ContactPersonNo" Type="nvarchar(max)" />
+          <Property Name="Logo" Type="image" />
+          <Property Name="LogoType" Type="varchar(max)" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="DivisionKey" Type="uniqueidentifier" />
+          <Property Name="DistrictKey" Type="uniqueidentifier" />
+          <Property Name="UpazillaKey" Type="uniqueidentifier" />
+        </EntityType>
+        <Association Name="FK_Asset_AssetCategory">
+          <End Role="AssetCategory" Type="Self.AssetCategory" Multiplicity="0..1" />
+          <End Role="Asset" Type="Self.Asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssetCategory">
+              <PropertyRef Name="CategoryKey" />
+            </Principal>
+            <Dependent Role="Asset">
+              <PropertyRef Name="CategoryKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Asset_AssetSubcategory">
+          <End Role="AssetSubcategory" Type="Self.AssetSubcategory" Multiplicity="0..1" />
+          <End Role="Asset" Type="Self.Asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssetSubcategory">
+              <PropertyRef Name="SubcategoryKey" />
+            </Principal>
+            <Dependent Role="Asset">
+              <PropertyRef Name="SubcategoryKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Asset_Manufacturer">
+          <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="0..1" />
+          <End Role="Asset" Type="Self.Asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturer">
+              <PropertyRef Name="ManufacturerKey" />
+            </Principal>
+            <Dependent Role="Asset">
+              <PropertyRef Name="ManufacturerKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Asset_Unit">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
+          <End Role="Asset" Type="Self.Asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="UnitKey" />
+            </Principal>
+            <Dependent Role="Asset">
+              <PropertyRef Name="UnitKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssetSubcategory_AssetCategory">
+          <End Role="AssetCategory" Type="Self.AssetCategory" Multiplicity="0..1" />
+          <End Role="AssetSubcategory" Type="Self.AssetSubcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssetCategory">
+              <PropertyRef Name="CategoryKey" />
+            </Principal>
+            <Dependent Role="AssetSubcategory">
+              <PropertyRef Name="CategoryKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company_District">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="Company" Type="Self.Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="DistrictKey" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="DistrictKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company_Division">
+          <End Role="Division" Type="Self.Division" Multiplicity="0..1" />
+          <End Role="Company" Type="Self.Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division">
+              <PropertyRef Name="DivisionKey" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="DivisionKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company_Upazilla">
+          <End Role="Upazilla" Type="Self.Upazilla" Multiplicity="0..1" />
+          <End Role="Company" Type="Self.Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Upazilla">
+              <PropertyRef Name="UpazillaKey" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="UpazillaKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Upazilla">
+          <End Role="Upazilla" Type="Self.Upazilla" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Upazilla">
+              <PropertyRef Name="UpazillaKey" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="UpazillaKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_District_Division">
+          <End Role="Division" Type="Self.Division" Multiplicity="0..1" />
+          <End Role="District" Type="Self.District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division">
+              <PropertyRef Name="DivisionKey" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="DivisionKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Forms_Modules">
+          <End Role="Modules" Type="Self.Modules" Multiplicity="1" />
+          <End Role="Forms" Type="Self.Forms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modules">
+              <PropertyRef Name="ModuleID" />
+            </Principal>
+            <Dependent Role="Forms">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Forms_SubModule">
+          <End Role="SubModule" Type="Self.SubModule" Multiplicity="0..1" />
+          <End Role="Forms" Type="Self.Forms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubModule">
+              <PropertyRef Name="SubModuleID" />
+            </Principal>
+            <Dependent Role="Forms">
+              <PropertyRef Name="SubModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_ItemCategory">
+          <End Role="ItemCategory" Type="Self.ItemCategory" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemCategory">
+              <PropertyRef Name="CategoryKey" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="CategoryKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_ItemSubcategory">
+          <End Role="ItemSubcategory" Type="Self.ItemSubcategory" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemSubcategory">
+              <PropertyRef Name="SubcategoryKey" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="SubcategoryKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_ItemType">
+          <End Role="ItemType" Type="Self.ItemType" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemType">
+              <PropertyRef Name="TypeKey" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="TypeKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_Unit">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="UnitKey" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="UnitKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subcategory_ItemCategory">
+          <End Role="ItemCategory" Type="Self.ItemCategory" Multiplicity="0..1" />
+          <End Role="ItemSubcategory" Type="Self.ItemSubcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemCategory">
+              <PropertyRef Name="CategoryKey" />
+            </Principal>
+            <Dependent Role="ItemSubcategory">
+              <PropertyRef Name="CategoryKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubModule_Modules">
+          <End Role="Modules" Type="Self.Modules" Multiplicity="1" />
+          <End Role="SubModule" Type="Self.SubModule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modules">
+              <PropertyRef Name="ModuleID" />
+            </Principal>
+            <Dependent Role="SubModule">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supplier_Upazilla">
+          <End Role="Upazilla" Type="Self.Upazilla" Multiplicity="0..1" />
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Upazilla">
+              <PropertyRef Name="UpazillaKey" />
+            </Principal>
+            <Dependent Role="Supplier">
+              <PropertyRef Name="UpazillaKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Upazilla_District">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="Upazilla" Type="Self.Upazilla" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="DistrictKey" />
+            </Principal>
+            <Dependent Role="Upazilla">
+              <PropertyRef Name="DistrictKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentKey" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="DepartmentKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Designation">
+          <End Role="Designation" Type="Self.Designation" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Designation">
+              <PropertyRef Name="DesignationKey" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="DesignationKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Upazilla">
+          <End Role="Upazilla" Type="Self.Upazilla" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Upazilla">
+              <PropertyRef Name="UpazillaKey" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UpazillaKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsergroupToForm_Forms">
+          <End Role="Forms" Type="Self.Forms" Multiplicity="0..1" />
+          <End Role="UsergroupToForm" Type="Self.UsergroupToForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Forms">
+              <PropertyRef Name="FormID" />
+            </Principal>
+            <Dependent Role="UsergroupToForm">
+              <PropertyRef Name="FormKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsergroupToForm_Usergroup">
+          <End Role="Usergroup" Type="Self.Usergroup" Multiplicity="0..1" />
+          <End Role="UsergroupToForm" Type="Self.UsergroupToForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usergroup">
+              <PropertyRef Name="GroupKey" />
+            </Principal>
+            <Dependent Role="UsergroupToForm">
+              <PropertyRef Name="GroupKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsergroupToModule_Modules">
+          <End Role="Modules" Type="Self.Modules" Multiplicity="0..1" />
+          <End Role="UsergroupToModule" Type="Self.UsergroupToModule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modules">
+              <PropertyRef Name="ModuleID" />
+            </Principal>
+            <Dependent Role="UsergroupToModule">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsergroupToModule_Usergroup">
+          <End Role="Usergroup" Type="Self.Usergroup" Multiplicity="0..1" />
+          <End Role="UsergroupToModule" Type="Self.UsergroupToModule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usergroup">
+              <PropertyRef Name="GroupKey" />
+            </Principal>
+            <Dependent Role="UsergroupToModule">
+              <PropertyRef Name="GroupKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsergroupToSubmodule_SubModule">
+          <End Role="SubModule" Type="Self.SubModule" Multiplicity="0..1" />
+          <End Role="UsergroupToSubmodule" Type="Self.UsergroupToSubmodule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubModule">
+              <PropertyRef Name="SubModuleID" />
+            </Principal>
+            <Dependent Role="UsergroupToSubmodule">
+              <PropertyRef Name="SubModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsergroupToSubmodule_Usergroup">
+          <End Role="Usergroup" Type="Self.Usergroup" Multiplicity="0..1" />
+          <End Role="UsergroupToSubmodule" Type="Self.UsergroupToSubmodule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usergroup">
+              <PropertyRef Name="GroupKey" />
+            </Principal>
+            <Dependent Role="UsergroupToSubmodule">
+              <PropertyRef Name="GroupKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Warehouse_District">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="DistrictKey" />
+            </Principal>
+            <Dependent Role="Warehouse">
+              <PropertyRef Name="DistrictKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Warehouse_Division">
+          <End Role="Division" Type="Self.Division" Multiplicity="0..1" />
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division">
+              <PropertyRef Name="DivisionKey" />
+            </Principal>
+            <Dependent Role="Warehouse">
+              <PropertyRef Name="DivisionKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Warehouse_Upazilla">
+          <End Role="Upazilla" Type="Self.Upazilla" Multiplicity="0..1" />
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Upazilla">
+              <PropertyRef Name="UpazillaKey" />
+            </Principal>
+            <Dependent Role="Warehouse">
+              <PropertyRef Name="UpazillaKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ERPMgtModelStoreContainer">
+          <EntitySet Name="Aisle" EntityType="Self.Aisle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Asset" EntityType="Self.Asset" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssetCategory" EntityType="Self.AssetCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssetSubcategory" EntityType="Self.AssetSubcategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Division" EntityType="Self.Division" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Forms" EntityType="Self.Forms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImageFile" EntityType="Self.ImageFile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemCategory" EntityType="Self.ItemCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemSubcategory" EntityType="Self.ItemSubcategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemType" EntityType="Self.ItemType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modules" EntityType="Self.Modules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductionProcessSetup" EntityType="Self.ProductionProcessSetup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Row_Store" EntityType="Self.Row_Store" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shelf" EntityType="Self.Shelf" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubModule" EntityType="Self.SubModule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tax" EntityType="Self.Tax" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Upazilla" EntityType="Self.Upazilla" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usergroup" EntityType="Self.Usergroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsergroupToForm" EntityType="Self.UsergroupToForm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsergroupToModule" EntityType="Self.UsergroupToModule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsergroupToSubmodule" EntityType="Self.UsergroupToSubmodule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Asset_AssetCategory" Association="Self.FK_Asset_AssetCategory">
+            <End Role="AssetCategory" EntitySet="AssetCategory" />
+            <End Role="Asset" EntitySet="Asset" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Asset_AssetSubcategory" Association="Self.FK_Asset_AssetSubcategory">
+            <End Role="AssetSubcategory" EntitySet="AssetSubcategory" />
+            <End Role="Asset" EntitySet="Asset" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Asset_Manufacturer" Association="Self.FK_Asset_Manufacturer">
+            <End Role="Manufacturer" EntitySet="Manufacturer" />
+            <End Role="Asset" EntitySet="Asset" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Asset_Unit" Association="Self.FK_Asset_Unit">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="Asset" EntitySet="Asset" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssetSubcategory_AssetCategory" Association="Self.FK_AssetSubcategory_AssetCategory">
+            <End Role="AssetCategory" EntitySet="AssetCategory" />
+            <End Role="AssetSubcategory" EntitySet="AssetSubcategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company_District" Association="Self.FK_Company_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="Company" EntitySet="Company" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company_Division" Association="Self.FK_Company_Division">
+            <End Role="Division" EntitySet="Division" />
+            <End Role="Company" EntitySet="Company" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company_Upazilla" Association="Self.FK_Company_Upazilla">
+            <End Role="Upazilla" EntitySet="Upazilla" />
+            <End Role="Company" EntitySet="Company" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Upazilla" Association="Self.FK_Customer_Upazilla">
+            <End Role="Upazilla" EntitySet="Upazilla" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_District_Division" Association="Self.FK_District_Division">
+            <End Role="Division" EntitySet="Division" />
+            <End Role="District" EntitySet="District" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Forms_Modules" Association="Self.FK_Forms_Modules">
+            <End Role="Modules" EntitySet="Modules" />
+            <End Role="Forms" EntitySet="Forms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Forms_SubModule" Association="Self.FK_Forms_SubModule">
+            <End Role="SubModule" EntitySet="SubModule" />
+            <End Role="Forms" EntitySet="Forms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_ItemCategory" Association="Self.FK_Item_ItemCategory">
+            <End Role="ItemCategory" EntitySet="ItemCategory" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_ItemSubcategory" Association="Self.FK_Item_ItemSubcategory">
+            <End Role="ItemSubcategory" EntitySet="ItemSubcategory" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_ItemType" Association="Self.FK_Item_ItemType">
+            <End Role="ItemType" EntitySet="ItemType" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_Unit" Association="Self.FK_Item_Unit">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subcategory_ItemCategory" Association="Self.FK_Subcategory_ItemCategory">
+            <End Role="ItemCategory" EntitySet="ItemCategory" />
+            <End Role="ItemSubcategory" EntitySet="ItemSubcategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubModule_Modules" Association="Self.FK_SubModule_Modules">
+            <End Role="Modules" EntitySet="Modules" />
+            <End Role="SubModule" EntitySet="SubModule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supplier_Upazilla" Association="Self.FK_Supplier_Upazilla">
+            <End Role="Upazilla" EntitySet="Upazilla" />
+            <End Role="Supplier" EntitySet="Supplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Upazilla_District" Association="Self.FK_Upazilla_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="Upazilla" EntitySet="Upazilla" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Department" Association="Self.FK_User_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Designation" Association="Self.FK_User_Designation">
+            <End Role="Designation" EntitySet="Designation" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Upazilla" Association="Self.FK_User_Upazilla">
+            <End Role="Upazilla" EntitySet="Upazilla" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsergroupToForm_Forms" Association="Self.FK_UsergroupToForm_Forms">
+            <End Role="Forms" EntitySet="Forms" />
+            <End Role="UsergroupToForm" EntitySet="UsergroupToForm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsergroupToForm_Usergroup" Association="Self.FK_UsergroupToForm_Usergroup">
+            <End Role="Usergroup" EntitySet="Usergroup" />
+            <End Role="UsergroupToForm" EntitySet="UsergroupToForm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsergroupToModule_Modules" Association="Self.FK_UsergroupToModule_Modules">
+            <End Role="Modules" EntitySet="Modules" />
+            <End Role="UsergroupToModule" EntitySet="UsergroupToModule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsergroupToModule_Usergroup" Association="Self.FK_UsergroupToModule_Usergroup">
+            <End Role="Usergroup" EntitySet="Usergroup" />
+            <End Role="UsergroupToModule" EntitySet="UsergroupToModule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsergroupToSubmodule_SubModule" Association="Self.FK_UsergroupToSubmodule_SubModule">
+            <End Role="SubModule" EntitySet="SubModule" />
+            <End Role="UsergroupToSubmodule" EntitySet="UsergroupToSubmodule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsergroupToSubmodule_Usergroup" Association="Self.FK_UsergroupToSubmodule_Usergroup">
+            <End Role="Usergroup" EntitySet="Usergroup" />
+            <End Role="UsergroupToSubmodule" EntitySet="UsergroupToSubmodule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Warehouse_District" Association="Self.FK_Warehouse_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="Warehouse" EntitySet="Warehouse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Warehouse_Division" Association="Self.FK_Warehouse_Division">
+            <End Role="Division" EntitySet="Division" />
+            <End Role="Warehouse" EntitySet="Warehouse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Warehouse_Upazilla" Association="Self.FK_Warehouse_Upazilla">
+            <End Role="Upazilla" EntitySet="Upazilla" />
+            <End Role="Warehouse" EntitySet="Warehouse" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ERPMgtModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Aisle">
+          <Key>
+            <PropertyRef Name="AisleKey" />
+          </Key>
+          <Property Name="AisleKey" Type="Guid" Nullable="false" />
+          <Property Name="AisleID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AisleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AisleLevel" Type="Int32" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="WarehouseKey" Type="Guid" />
+        </EntityType>
+        <EntityType Name="Asset">
+          <Key>
+            <PropertyRef Name="ItemKey" />
+          </Key>
+          <Property Name="ItemKey" Type="Guid" Nullable="false" />
+          <Property Name="ItemID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ItemName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Logotype" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UnitKey" Type="Guid" />
+          <Property Name="Unitsize" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CategoryKey" Type="Guid" />
+          <Property Name="SubcategoryKey" Type="Guid" />
+          <Property Name="ModelNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ItemColor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReorderLevel" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="ManufacturerKey" Type="Guid" />
+          <Property Name="StartYear" Type="Int32" />
+          <Property Name="DepreciationFactor" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AssetLife" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="AssetCategory" Relationship="Self.FK_Asset_AssetCategory" FromRole="Asset" ToRole="AssetCategory" />
+          <NavigationProperty Name="AssetSubcategory" Relationship="Self.FK_Asset_AssetSubcategory" FromRole="Asset" ToRole="AssetSubcategory" />
+          <NavigationProperty Name="Manufacturer" Relationship="Self.FK_Asset_Manufacturer" FromRole="Asset" ToRole="Manufacturer" />
+          <NavigationProperty Name="Unit" Relationship="Self.FK_Asset_Unit" FromRole="Asset" ToRole="Unit" />
+        </EntityType>
+        <EntityType Name="AssetCategory">
+          <Key>
+            <PropertyRef Name="CategoryKey" />
+          </Key>
+          <Property Name="CategoryKey" Type="Guid" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <NavigationProperty Name="Asset" Relationship="Self.FK_Asset_AssetCategory" FromRole="AssetCategory" ToRole="Asset" />
+          <NavigationProperty Name="AssetSubcategory" Relationship="Self.FK_AssetSubcategory_AssetCategory" FromRole="AssetCategory" ToRole="AssetSubcategory" />
+        </EntityType>
+        <EntityType Name="AssetSubcategory">
+          <Key>
+            <PropertyRef Name="SubcategoryKey" />
+          </Key>
+          <Property Name="SubcategoryKey" Type="Guid" Nullable="false" />
+          <Property Name="SubcategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubcategoryID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CategoryKey" Type="Guid" />
+          <NavigationProperty Name="Asset" Relationship="Self.FK_Asset_AssetSubcategory" FromRole="AssetSubcategory" ToRole="Asset" />
+          <NavigationProperty Name="AssetCategory" Relationship="Self.FK_AssetSubcategory_AssetCategory" FromRole="AssetSubcategory" ToRole="AssetCategory" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyKey" />
+          </Key>
+          <Property Name="CompanyKey" Type="Guid" Nullable="false" />
+          <Property Name="CompanyID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyMobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyWebsite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyFax" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPersonName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPersonNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LogoType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="DivisionKey" Type="Guid" />
+          <Property Name="DistrictKey" Type="Guid" />
+          <Property Name="UpazillaKey" Type="Guid" />
+          <NavigationProperty Name="District" Relationship="Self.FK_Company_District" FromRole="Company" ToRole="District" />
+          <NavigationProperty Name="Division" Relationship="Self.FK_Company_Division" FromRole="Company" ToRole="Division" />
+          <NavigationProperty Name="Upazilla" Relationship="Self.FK_Company_Upazilla" FromRole="Company" ToRole="Upazilla" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerKey" />
+          </Key>
+          <Property Name="CustomerKey" Type="Guid" Nullable="false" />
+          <Property Name="WarehouseKey" Type="Guid" Nullable="false" />
+          <Property Name="CustomeID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomeAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CMobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CWebsite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CFax" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPersonName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPersonNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LogoType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="DiscountPerc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DiscountAmt" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Incentive" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="UpazillaKey" Type="Guid" />
+          <NavigationProperty Name="Upazilla" Relationship="Self.FK_Customer_Upazilla" FromRole="Customer" ToRole="Upazilla" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentKey" />
+          </Key>
+          <Property Name="DepartmentKey" Type="Guid" Nullable="false" />
+          <Property Name="DepartmentID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="WarehouseKey" Type="Guid" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Department" FromRole="Department" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Designation">
+          <Key>
+            <PropertyRef Name="DesignationKey" />
+          </Key>
+          <Property Name="DesignationKey" Type="Guid" Nullable="false" />
+          <Property Name="DesignationtID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DesignationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DesignationLevel" Type="Int32" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="WarehouseKey" Type="Guid" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Designation" FromRole="Designation" ToRole="User" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="DistrictKey" />
+          </Key>
+          <Property Name="DistrictKey" Type="Guid" Nullable="false" />
+          <Property Name="DistrictID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DistrictName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DivisionKey" Type="Guid" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_Company_District" FromRole="District" ToRole="Company" />
+          <NavigationProperty Name="Division" Relationship="Self.FK_District_Division" FromRole="District" ToRole="Division" />
+          <NavigationProperty Name="Upazilla" Relationship="Self.FK_Upazilla_District" FromRole="District" ToRole="Upazilla" />
+          <NavigationProperty Name="Warehouse" Relationship="Self.FK_Warehouse_District" FromRole="District" ToRole="Warehouse" />
+        </EntityType>
+        <EntityType Name="Division">
+          <Key>
+            <PropertyRef Name="DivisionKey" />
+          </Key>
+          <Property Name="DivisionKey" Type="Guid" Nullable="false" />
+          <Property Name="DivisionID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DivisionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_Company_Division" FromRole="Division" ToRole="Company" />
+          <NavigationProperty Name="District" Relationship="Self.FK_District_Division" FromRole="Division" ToRole="District" />
+          <NavigationProperty Name="Warehouse" Relationship="Self.FK_Warehouse_Division" FromRole="Division" ToRole="Warehouse" />
+        </EntityType>
+        <EntityType Name="Forms">
+          <Key>
+            <PropertyRef Name="FormID" />
+          </Key>
+          <Property Name="FormID" Type="Guid" Nullable="false" />
+          <Property Name="ModuleID" Type="Guid" Nullable="false" />
+          <Property Name="FormName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FormLevel" Type="Int32" />
+          <Property Name="FormController" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ViewName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubModuleID" Type="Guid" />
+          <NavigationProperty Name="Modules" Relationship="Self.FK_Forms_Modules" FromRole="Forms" ToRole="Modules" />
+          <NavigationProperty Name="SubModule" Relationship="Self.FK_Forms_SubModule" FromRole="Forms" ToRole="SubModule" />
+          <NavigationProperty Name="UsergroupToForm" Relationship="Self.FK_UsergroupToForm_Forms" FromRole="Forms" ToRole="UsergroupToForm" />
+        </EntityType>
+        <EntityType Name="ImageFile">
+          <Key>
+            <PropertyRef Name="ImageFileKey" />
+          </Key>
+          <Property Name="ImageFileKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FileType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FileContent" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ItemKey" />
+          </Key>
+          <Property Name="ItemKey" Type="Guid" Nullable="false" />
+          <Property Name="ItemID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ItemName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="UnitKey" Type="Guid" />
+          <Property Name="Unitsize" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CategoryKey" Type="Guid" />
+          <Property Name="SubcategoryKey" Type="Guid" />
+          <Property Name="TypeKey" Type="Guid" />
+          <Property Name="ModelNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ItemColor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReorderLevel" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <NavigationProperty Name="ItemCategory" Relationship="Self.FK_Item_ItemCategory" FromRole="Item" ToRole="ItemCategory" />
+          <NavigationProperty Name="ItemSubcategory" Relationship="Self.FK_Item_ItemSubcategory" FromRole="Item" ToRole="ItemSubcategory" />
+          <NavigationProperty Name="ItemType" Relationship="Self.FK_Item_ItemType" FromRole="Item" ToRole="ItemType" />
+          <NavigationProperty Name="Unit" Relationship="Self.FK_Item_Unit" FromRole="Item" ToRole="Unit" />
+        </EntityType>
+        <EntityType Name="ItemCategory">
+          <Key>
+            <PropertyRef Name="CategoryKey" />
+          </Key>
+          <Property Name="CategoryKey" Type="Guid" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_Item_ItemCategory" FromRole="ItemCategory" ToRole="Item" />
+          <NavigationProperty Name="ItemSubcategory" Relationship="Self.FK_Subcategory_ItemCategory" FromRole="ItemCategory" ToRole="ItemSubcategory" />
+        </EntityType>
+        <EntityType Name="ItemSubcategory">
+          <Key>
+            <PropertyRef Name="SubcategoryKey" />
+          </Key>
+          <Property Name="SubcategoryKey" Type="Guid" Nullable="false" />
+          <Property Name="SubcategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubcategoryID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="CategoryKey" Type="Guid" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_Item_ItemSubcategory" FromRole="ItemSubcategory" ToRole="Item" />
+          <NavigationProperty Name="ItemCategory" Relationship="Self.FK_Subcategory_ItemCategory" FromRole="ItemSubcategory" ToRole="ItemCategory" />
+        </EntityType>
+        <EntityType Name="ItemType">
+          <Key>
+            <PropertyRef Name="TypeKey" />
+          </Key>
+          <Property Name="TypeKey" Type="Guid" Nullable="false" />
+          <Property Name="TypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TypeID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_Item_ItemType" FromRole="ItemType" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Manufacturer">
+          <Key>
+            <PropertyRef Name="ManufacturerKey" />
+          </Key>
+          <Property Name="ManufacturerKey" Type="Guid" Nullable="false" />
+          <Property Name="ManufacturerID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ManufacturerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ManufacturerAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CountryOfOrigin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CWebsite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CFax" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LogoType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <NavigationProperty Name="Asset" Relationship="Self.FK_Asset_Manufacturer" FromRole="Manufacturer" ToRole="Asset" />
+        </EntityType>
+        <EntityType Name="Modules">
+          <Key>
+            <PropertyRef Name="ModuleID" />
+          </Key>
+          <Property Name="ModuleID" Type="Guid" Nullable="false" />
+          <Property Name="ModuleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ModuleLevel" Type="Int32" />
+          <NavigationProperty Name="Forms" Relationship="Self.FK_Forms_Modules" FromRole="Modules" ToRole="Forms" />
+          <NavigationProperty Name="SubModule" Relationship="Self.FK_SubModule_Modules" FromRole="Modules" ToRole="SubModule" />
+          <NavigationProperty Name="UsergroupToModule" Relationship="Self.FK_UsergroupToModule_Modules" FromRole="Modules" ToRole="UsergroupToModule" />
+        </EntityType>
+        <EntityType Name="ProductionProcessSetup">
+          <Key>
+            <PropertyRef Name="ProcessKey" />
+          </Key>
+          <Property Name="ProcessKey" Type="Guid" Nullable="false" />
+          <Property Name="ProcessID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessLevel" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="WarehouseKey" Type="Guid" />
+        </EntityType>
+        <EntityType Name="Row_Store">
+          <Key>
+            <PropertyRef Name="RowKey" />
+          </Key>
+          <Property Name="RowKey" Type="Guid" Nullable="false" />
+          <Property Name="RowID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RowName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RowLevel" Type="Int32" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="WarehouseKey" Type="Guid" />
+        </EntityType>
+        <EntityType Name="Shelf">
+          <Key>
+            <PropertyRef Name="ShelfKey" />
+          </Key>
+          <Property Name="ShelfKey" Type="Guid" Nullable="false" />
+          <Property Name="ShelfID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShelfName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShelfLevel" Type="Int32" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="WarehouseKey" Type="Guid" />
+        </EntityType>
+        <EntityType Name="SubModule">
+          <Key>
+            <PropertyRef Name="SubModuleID" />
+          </Key>
+          <Property Name="SubModuleID" Type="Guid" Nullable="false" />
+          <Property Name="ModuleID" Type="Guid" Nullable="false" />
+          <Property Name="SubModuleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubModuleLevel" Type="Int32" />
+          <NavigationProperty Name="Forms" Relationship="Self.FK_Forms_SubModule" FromRole="SubModule" ToRole="Forms" />
+          <NavigationProperty Name="Modules" Relationship="Self.FK_SubModule_Modules" FromRole="SubModule" ToRole="Modules" />
+          <NavigationProperty Name="UsergroupToSubmodule" Relationship="Self.FK_UsergroupToSubmodule_SubModule" FromRole="SubModule" ToRole="UsergroupToSubmodule" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="Guid" Nullable="false" />
+          <Property Name="SupplierName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SupplierAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SupplierPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SupplierMobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SupplierEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SupplierWebsite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SupplierFax" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WarehouseKey" Type="Guid" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="ContactPersonName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPersonNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LogoType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DiscountPerc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DiscountAmt" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Incentive" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="UpazillaKey" Type="Guid" />
+          <NavigationProperty Name="Upazilla" Relationship="Self.FK_Supplier_Upazilla" FromRole="Supplier" ToRole="Upazilla" />
+        </EntityType>
+        <EntityType Name="Tax">
+          <Key>
+            <PropertyRef Name="TaxKey" />
+          </Key>
+          <Property Name="TaxKey" Type="Guid" Nullable="false" />
+          <Property Name="TaxID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Amt" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="WarehouseKey" Type="Guid" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="UnitKey" />
+          </Key>
+          <Property Name="UnitKey" Type="Guid" Nullable="false" />
+          <Property Name="UnitID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UnitName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <NavigationProperty Name="Asset" Relationship="Self.FK_Asset_Unit" FromRole="Unit" ToRole="Asset" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_Item_Unit" FromRole="Unit" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Upazilla">
+          <Key>
+            <PropertyRef Name="UpazillaKey" />
+          </Key>
+          <Property Name="UpazillaKey" Type="Guid" Nullable="false" />
+          <Property Name="UpazillaID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpazillaName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DistrictKey" Type="Guid" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_Company_Upazilla" FromRole="Upazilla" ToRole="Company" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Customer_Upazilla" FromRole="Upazilla" ToRole="Customer" />
+          <NavigationProperty Name="District" Relationship="Self.FK_Upazilla_District" FromRole="Upazilla" ToRole="District" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_Supplier_Upazilla" FromRole="Upazilla" ToRole="Supplier" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Upazilla" FromRole="Upazilla" ToRole="User" />
+          <NavigationProperty Name="Warehouse" Relationship="Self.FK_Warehouse_Upazilla" FromRole="Upazilla" ToRole="Warehouse" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserKey" />
+          </Key>
+          <Property Name="UserKey" Type="Guid" Nullable="false" />
+          <Property Name="DesignationKey" Type="Guid" />
+          <Property Name="DepartmentKey" Type="Guid" />
+          <Property Name="PersonName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UpazillaKey" Type="Guid" />
+          <Property Name="NationalID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Precision="3" />
+          <Property Name="BloodGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmergencyPhone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Relationship" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Pic" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="pictype" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WarhouseKey" Type="Guid" />
+          <Property Name="GroupKey" Type="Guid" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_User_Department" FromRole="User" ToRole="Department" />
+          <NavigationProperty Name="Designation" Relationship="Self.FK_User_Designation" FromRole="User" ToRole="Designation" />
+          <NavigationProperty Name="Upazilla" Relationship="Self.FK_User_Upazilla" FromRole="User" ToRole="Upazilla" />
+        </EntityType>
+        <EntityType Name="Usergroup">
+          <Key>
+            <PropertyRef Name="GroupKey" />
+          </Key>
+          <Property Name="GroupKey" Type="Guid" Nullable="false" />
+          <Property Name="GroupName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UsergroupToForm" Relationship="Self.FK_UsergroupToForm_Usergroup" FromRole="Usergroup" ToRole="UsergroupToForm" />
+          <NavigationProperty Name="UsergroupToModule" Relationship="Self.FK_UsergroupToModule_Usergroup" FromRole="Usergroup" ToRole="UsergroupToModule" />
+          <NavigationProperty Name="UsergroupToSubmodule" Relationship="Self.FK_UsergroupToSubmodule_Usergroup" FromRole="Usergroup" ToRole="UsergroupToSubmodule" />
+        </EntityType>
+        <EntityType Name="UsergroupToForm">
+          <Key>
+            <PropertyRef Name="UsergroupToFormKey" />
+          </Key>
+          <Property Name="UsergroupToFormKey" Type="Guid" Nullable="false" />
+          <Property Name="FormKey" Type="Guid" />
+          <Property Name="GroupKey" Type="Guid" />
+          <NavigationProperty Name="Forms" Relationship="Self.FK_UsergroupToForm_Forms" FromRole="UsergroupToForm" ToRole="Forms" />
+          <NavigationProperty Name="Usergroup" Relationship="Self.FK_UsergroupToForm_Usergroup" FromRole="UsergroupToForm" ToRole="Usergroup" />
+        </EntityType>
+        <EntityType Name="UsergroupToModule">
+          <Key>
+            <PropertyRef Name="GroupToModuleKey" />
+          </Key>
+          <Property Name="GroupToModuleKey" Type="Guid" Nullable="false" />
+          <Property Name="ModuleID" Type="Guid" />
+          <Property Name="GroupKey" Type="Guid" />
+          <NavigationProperty Name="Modules" Relationship="Self.FK_UsergroupToModule_Modules" FromRole="UsergroupToModule" ToRole="Modules" />
+          <NavigationProperty Name="Usergroup" Relationship="Self.FK_UsergroupToModule_Usergroup" FromRole="UsergroupToModule" ToRole="Usergroup" />
+        </EntityType>
+        <EntityType Name="UsergroupToSubmodule">
+          <Key>
+            <PropertyRef Name="GroupToSubModuleKey" />
+          </Key>
+          <Property Name="GroupToSubModuleKey" Type="Guid" Nullable="false" />
+          <Property Name="SubModuleID" Type="Guid" />
+          <Property Name="GroupKey" Type="Guid" />
+          <NavigationProperty Name="SubModule" Relationship="Self.FK_UsergroupToSubmodule_SubModule" FromRole="UsergroupToSubmodule" ToRole="SubModule" />
+          <NavigationProperty Name="Usergroup" Relationship="Self.FK_UsergroupToSubmodule_Usergroup" FromRole="UsergroupToSubmodule" ToRole="Usergroup" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="WarehouseKey" />
+          </Key>
+          <Property Name="WarehouseKey" Type="Guid" Nullable="false" />
+          <Property Name="WahouseID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WahouseName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WahouseAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WahousePhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WahouseMobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WahouseEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WahouseWebsite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WahouseFax" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPersonName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPersonNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LogoType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="DivisionKey" Type="Guid" />
+          <Property Name="DistrictKey" Type="Guid" />
+          <Property Name="UpazillaKey" Type="Guid" />
+          <NavigationProperty Name="District" Relationship="Self.FK_Warehouse_District" FromRole="Warehouse" ToRole="District" />
+          <NavigationProperty Name="Division" Relationship="Self.FK_Warehouse_Division" FromRole="Warehouse" ToRole="Division" />
+          <NavigationProperty Name="Upazilla" Relationship="Self.FK_Warehouse_Upazilla" FromRole="Warehouse" ToRole="Upazilla" />
+        </EntityType>
+        <Association Name="FK_Asset_AssetCategory">
+          <End Role="AssetCategory" Type="Self.AssetCategory" Multiplicity="0..1" />
+          <End Role="Asset" Type="Self.Asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssetCategory">
+              <PropertyRef Name="CategoryKey" />
+            </Principal>
+            <Dependent Role="Asset">
+              <PropertyRef Name="CategoryKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Asset_AssetSubcategory">
+          <End Role="AssetSubcategory" Type="Self.AssetSubcategory" Multiplicity="0..1" />
+          <End Role="Asset" Type="Self.Asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssetSubcategory">
+              <PropertyRef Name="SubcategoryKey" />
+            </Principal>
+            <Dependent Role="Asset">
+              <PropertyRef Name="SubcategoryKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Asset_Manufacturer">
+          <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="0..1" />
+          <End Role="Asset" Type="Self.Asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturer">
+              <PropertyRef Name="ManufacturerKey" />
+            </Principal>
+            <Dependent Role="Asset">
+              <PropertyRef Name="ManufacturerKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Asset_Unit">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
+          <End Role="Asset" Type="Self.Asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="UnitKey" />
+            </Principal>
+            <Dependent Role="Asset">
+              <PropertyRef Name="UnitKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssetSubcategory_AssetCategory">
+          <End Role="AssetCategory" Type="Self.AssetCategory" Multiplicity="0..1" />
+          <End Role="AssetSubcategory" Type="Self.AssetSubcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssetCategory">
+              <PropertyRef Name="CategoryKey" />
+            </Principal>
+            <Dependent Role="AssetSubcategory">
+              <PropertyRef Name="CategoryKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company_District">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="Company" Type="Self.Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="DistrictKey" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="DistrictKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company_Division">
+          <End Role="Division" Type="Self.Division" Multiplicity="0..1" />
+          <End Role="Company" Type="Self.Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division">
+              <PropertyRef Name="DivisionKey" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="DivisionKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company_Upazilla">
+          <End Role="Upazilla" Type="Self.Upazilla" Multiplicity="0..1" />
+          <End Role="Company" Type="Self.Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Upazilla">
+              <PropertyRef Name="UpazillaKey" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="UpazillaKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Upazilla">
+          <End Role="Upazilla" Type="Self.Upazilla" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Upazilla">
+              <PropertyRef Name="UpazillaKey" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="UpazillaKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentKey" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="DepartmentKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Designation">
+          <End Role="Designation" Type="Self.Designation" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Designation">
+              <PropertyRef Name="DesignationKey" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="DesignationKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_District_Division">
+          <End Role="Division" Type="Self.Division" Multiplicity="0..1" />
+          <End Role="District" Type="Self.District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division">
+              <PropertyRef Name="DivisionKey" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="DivisionKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Upazilla_District">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="Upazilla" Type="Self.Upazilla" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="DistrictKey" />
+            </Principal>
+            <Dependent Role="Upazilla">
+              <PropertyRef Name="DistrictKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Warehouse_District">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="DistrictKey" />
+            </Principal>
+            <Dependent Role="Warehouse">
+              <PropertyRef Name="DistrictKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Warehouse_Division">
+          <End Role="Division" Type="Self.Division" Multiplicity="0..1" />
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division">
+              <PropertyRef Name="DivisionKey" />
+            </Principal>
+            <Dependent Role="Warehouse">
+              <PropertyRef Name="DivisionKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Forms_Modules">
+          <End Role="Modules" Type="Self.Modules" Multiplicity="1" />
+          <End Role="Forms" Type="Self.Forms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modules">
+              <PropertyRef Name="ModuleID" />
+            </Principal>
+            <Dependent Role="Forms">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Forms_SubModule">
+          <End Role="SubModule" Type="Self.SubModule" Multiplicity="0..1" />
+          <End Role="Forms" Type="Self.Forms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubModule">
+              <PropertyRef Name="SubModuleID" />
+            </Principal>
+            <Dependent Role="Forms">
+              <PropertyRef Name="SubModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsergroupToForm_Forms">
+          <End Role="Forms" Type="Self.Forms" Multiplicity="0..1" />
+          <End Role="UsergroupToForm" Type="Self.UsergroupToForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Forms">
+              <PropertyRef Name="FormID" />
+            </Principal>
+            <Dependent Role="UsergroupToForm">
+              <PropertyRef Name="FormKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_ItemCategory">
+          <End Role="ItemCategory" Type="Self.ItemCategory" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemCategory">
+              <PropertyRef Name="CategoryKey" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="CategoryKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_ItemSubcategory">
+          <End Role="ItemSubcategory" Type="Self.ItemSubcategory" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemSubcategory">
+              <PropertyRef Name="SubcategoryKey" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="SubcategoryKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_ItemType">
+          <End Role="ItemType" Type="Self.ItemType" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemType">
+              <PropertyRef Name="TypeKey" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="TypeKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_Unit">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="UnitKey" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="UnitKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subcategory_ItemCategory">
+          <End Role="ItemCategory" Type="Self.ItemCategory" Multiplicity="0..1" />
+          <End Role="ItemSubcategory" Type="Self.ItemSubcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemCategory">
+              <PropertyRef Name="CategoryKey" />
+            </Principal>
+            <Dependent Role="ItemSubcategory">
+              <PropertyRef Name="CategoryKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubModule_Modules">
+          <End Role="Modules" Type="Self.Modules" Multiplicity="1" />
+          <End Role="SubModule" Type="Self.SubModule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modules">
+              <PropertyRef Name="ModuleID" />
+            </Principal>
+            <Dependent Role="SubModule">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsergroupToModule_Modules">
+          <End Role="Modules" Type="Self.Modules" Multiplicity="0..1" />
+          <End Role="UsergroupToModule" Type="Self.UsergroupToModule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modules">
+              <PropertyRef Name="ModuleID" />
+            </Principal>
+            <Dependent Role="UsergroupToModule">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsergroupToSubmodule_SubModule">
+          <End Role="SubModule" Type="Self.SubModule" Multiplicity="0..1" />
+          <End Role="UsergroupToSubmodule" Type="Self.UsergroupToSubmodule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubModule">
+              <PropertyRef Name="SubModuleID" />
+            </Principal>
+            <Dependent Role="UsergroupToSubmodule">
+              <PropertyRef Name="SubModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supplier_Upazilla">
+          <End Role="Upazilla" Type="Self.Upazilla" Multiplicity="0..1" />
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Upazilla">
+              <PropertyRef Name="UpazillaKey" />
+            </Principal>
+            <Dependent Role="Supplier">
+              <PropertyRef Name="UpazillaKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Upazilla">
+          <End Role="Upazilla" Type="Self.Upazilla" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Upazilla">
+              <PropertyRef Name="UpazillaKey" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UpazillaKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Warehouse_Upazilla">
+          <End Role="Upazilla" Type="Self.Upazilla" Multiplicity="0..1" />
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Upazilla">
+              <PropertyRef Name="UpazillaKey" />
+            </Principal>
+            <Dependent Role="Warehouse">
+              <PropertyRef Name="UpazillaKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsergroupToForm_Usergroup">
+          <End Role="Usergroup" Type="Self.Usergroup" Multiplicity="0..1" />
+          <End Role="UsergroupToForm" Type="Self.UsergroupToForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usergroup">
+              <PropertyRef Name="GroupKey" />
+            </Principal>
+            <Dependent Role="UsergroupToForm">
+              <PropertyRef Name="GroupKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsergroupToModule_Usergroup">
+          <End Role="Usergroup" Type="Self.Usergroup" Multiplicity="0..1" />
+          <End Role="UsergroupToModule" Type="Self.UsergroupToModule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usergroup">
+              <PropertyRef Name="GroupKey" />
+            </Principal>
+            <Dependent Role="UsergroupToModule">
+              <PropertyRef Name="GroupKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsergroupToSubmodule_Usergroup">
+          <End Role="Usergroup" Type="Self.Usergroup" Multiplicity="0..1" />
+          <End Role="UsergroupToSubmodule" Type="Self.UsergroupToSubmodule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usergroup">
+              <PropertyRef Name="GroupKey" />
+            </Principal>
+            <Dependent Role="UsergroupToSubmodule">
+              <PropertyRef Name="GroupKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ERPMgtEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Aisle" EntityType="Self.Aisle" />
+          <EntitySet Name="Asset" EntityType="Self.Asset" />
+          <EntitySet Name="AssetCategory" EntityType="Self.AssetCategory" />
+          <EntitySet Name="AssetSubcategory" EntityType="Self.AssetSubcategory" />
+          <EntitySet Name="Company" EntityType="Self.Company" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" />
+          <EntitySet Name="Department" EntityType="Self.Department" />
+          <EntitySet Name="Designation" EntityType="Self.Designation" />
+          <EntitySet Name="District" EntityType="Self.District" />
+          <EntitySet Name="Division" EntityType="Self.Division" />
+          <EntitySet Name="Forms" EntityType="Self.Forms" />
+          <EntitySet Name="ImageFile" EntityType="Self.ImageFile" />
+          <EntitySet Name="Item" EntityType="Self.Item" />
+          <EntitySet Name="ItemCategory" EntityType="Self.ItemCategory" />
+          <EntitySet Name="ItemSubcategory" EntityType="Self.ItemSubcategory" />
+          <EntitySet Name="ItemType" EntityType="Self.ItemType" />
+          <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" />
+          <EntitySet Name="Modules" EntityType="Self.Modules" />
+          <EntitySet Name="ProductionProcessSetup" EntityType="Self.ProductionProcessSetup" />
+          <EntitySet Name="Row_Store" EntityType="Self.Row_Store" />
+          <EntitySet Name="Shelf" EntityType="Self.Shelf" />
+          <EntitySet Name="SubModule" EntityType="Self.SubModule" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" />
+          <EntitySet Name="Tax" EntityType="Self.Tax" />
+          <EntitySet Name="Unit" EntityType="Self.Unit" />
+          <EntitySet Name="Upazilla" EntityType="Self.Upazilla" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="Usergroup" EntityType="Self.Usergroup" />
+          <EntitySet Name="UsergroupToForm" EntityType="Self.UsergroupToForm" />
+          <EntitySet Name="UsergroupToModule" EntityType="Self.UsergroupToModule" />
+          <EntitySet Name="UsergroupToSubmodule" EntityType="Self.UsergroupToSubmodule" />
+          <EntitySet Name="Warehouse" EntityType="Self.Warehouse" />
+          <AssociationSet Name="FK_Asset_AssetCategory" Association="Self.FK_Asset_AssetCategory">
+            <End Role="AssetCategory" EntitySet="AssetCategory" />
+            <End Role="Asset" EntitySet="Asset" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Asset_AssetSubcategory" Association="Self.FK_Asset_AssetSubcategory">
+            <End Role="AssetSubcategory" EntitySet="AssetSubcategory" />
+            <End Role="Asset" EntitySet="Asset" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Asset_Manufacturer" Association="Self.FK_Asset_Manufacturer">
+            <End Role="Manufacturer" EntitySet="Manufacturer" />
+            <End Role="Asset" EntitySet="Asset" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Asset_Unit" Association="Self.FK_Asset_Unit">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="Asset" EntitySet="Asset" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssetSubcategory_AssetCategory" Association="Self.FK_AssetSubcategory_AssetCategory">
+            <End Role="AssetCategory" EntitySet="AssetCategory" />
+            <End Role="AssetSubcategory" EntitySet="AssetSubcategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company_District" Association="Self.FK_Company_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="Company" EntitySet="Company" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company_Division" Association="Self.FK_Company_Division">
+            <End Role="Division" EntitySet="Division" />
+            <End Role="Company" EntitySet="Company" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company_Upazilla" Association="Self.FK_Company_Upazilla">
+            <End Role="Upazilla" EntitySet="Upazilla" />
+            <End Role="Company" EntitySet="Company" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Upazilla" Association="Self.FK_Customer_Upazilla">
+            <End Role="Upazilla" EntitySet="Upazilla" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Department" Association="Self.FK_User_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Designation" Association="Self.FK_User_Designation">
+            <End Role="Designation" EntitySet="Designation" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_District_Division" Association="Self.FK_District_Division">
+            <End Role="Division" EntitySet="Division" />
+            <End Role="District" EntitySet="District" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Upazilla_District" Association="Self.FK_Upazilla_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="Upazilla" EntitySet="Upazilla" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Warehouse_District" Association="Self.FK_Warehouse_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="Warehouse" EntitySet="Warehouse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Warehouse_Division" Association="Self.FK_Warehouse_Division">
+            <End Role="Division" EntitySet="Division" />
+            <End Role="Warehouse" EntitySet="Warehouse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Forms_Modules" Association="Self.FK_Forms_Modules">
+            <End Role="Modules" EntitySet="Modules" />
+            <End Role="Forms" EntitySet="Forms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Forms_SubModule" Association="Self.FK_Forms_SubModule">
+            <End Role="SubModule" EntitySet="SubModule" />
+            <End Role="Forms" EntitySet="Forms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsergroupToForm_Forms" Association="Self.FK_UsergroupToForm_Forms">
+            <End Role="Forms" EntitySet="Forms" />
+            <End Role="UsergroupToForm" EntitySet="UsergroupToForm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_ItemCategory" Association="Self.FK_Item_ItemCategory">
+            <End Role="ItemCategory" EntitySet="ItemCategory" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_ItemSubcategory" Association="Self.FK_Item_ItemSubcategory">
+            <End Role="ItemSubcategory" EntitySet="ItemSubcategory" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_ItemType" Association="Self.FK_Item_ItemType">
+            <End Role="ItemType" EntitySet="ItemType" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_Unit" Association="Self.FK_Item_Unit">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subcategory_ItemCategory" Association="Self.FK_Subcategory_ItemCategory">
+            <End Role="ItemCategory" EntitySet="ItemCategory" />
+            <End Role="ItemSubcategory" EntitySet="ItemSubcategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubModule_Modules" Association="Self.FK_SubModule_Modules">
+            <End Role="Modules" EntitySet="Modules" />
+            <End Role="SubModule" EntitySet="SubModule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsergroupToModule_Modules" Association="Self.FK_UsergroupToModule_Modules">
+            <End Role="Modules" EntitySet="Modules" />
+            <End Role="UsergroupToModule" EntitySet="UsergroupToModule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsergroupToSubmodule_SubModule" Association="Self.FK_UsergroupToSubmodule_SubModule">
+            <End Role="SubModule" EntitySet="SubModule" />
+            <End Role="UsergroupToSubmodule" EntitySet="UsergroupToSubmodule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supplier_Upazilla" Association="Self.FK_Supplier_Upazilla">
+            <End Role="Upazilla" EntitySet="Upazilla" />
+            <End Role="Supplier" EntitySet="Supplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Upazilla" Association="Self.FK_User_Upazilla">
+            <End Role="Upazilla" EntitySet="Upazilla" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Warehouse_Upazilla" Association="Self.FK_Warehouse_Upazilla">
+            <End Role="Upazilla" EntitySet="Upazilla" />
+            <End Role="Warehouse" EntitySet="Warehouse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsergroupToForm_Usergroup" Association="Self.FK_UsergroupToForm_Usergroup">
+            <End Role="Usergroup" EntitySet="Usergroup" />
+            <End Role="UsergroupToForm" EntitySet="UsergroupToForm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsergroupToModule_Usergroup" Association="Self.FK_UsergroupToModule_Usergroup">
+            <End Role="Usergroup" EntitySet="Usergroup" />
+            <End Role="UsergroupToModule" EntitySet="UsergroupToModule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsergroupToSubmodule_Usergroup" Association="Self.FK_UsergroupToSubmodule_Usergroup">
+            <End Role="Usergroup" EntitySet="Usergroup" />
+            <End Role="UsergroupToSubmodule" EntitySet="UsergroupToSubmodule" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ERPMgtModelStoreContainer" CdmEntityContainer="ERPMgtEntities">
+          <EntitySetMapping Name="Aisle">
+            <EntityTypeMapping TypeName="ERPMgtModel.Aisle">
+              <MappingFragment StoreEntitySet="Aisle">
+                <ScalarProperty Name="AisleKey" ColumnName="AisleKey" />
+                <ScalarProperty Name="AisleID" ColumnName="AisleID" />
+                <ScalarProperty Name="AisleName" ColumnName="AisleName" />
+                <ScalarProperty Name="AisleLevel" ColumnName="AisleLevel" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="WarehouseKey" ColumnName="WarehouseKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Asset">
+            <EntityTypeMapping TypeName="ERPMgtModel.Asset">
+              <MappingFragment StoreEntitySet="Asset">
+                <ScalarProperty Name="ItemKey" ColumnName="ItemKey" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
+                <ScalarProperty Name="Logotype" ColumnName="Logotype" />
+                <ScalarProperty Name="UnitKey" ColumnName="UnitKey" />
+                <ScalarProperty Name="Unitsize" ColumnName="Unitsize" />
+                <ScalarProperty Name="CategoryKey" ColumnName="CategoryKey" />
+                <ScalarProperty Name="SubcategoryKey" ColumnName="SubcategoryKey" />
+                <ScalarProperty Name="ModelNo" ColumnName="ModelNo" />
+                <ScalarProperty Name="ItemColor" ColumnName="ItemColor" />
+                <ScalarProperty Name="ReorderLevel" ColumnName="ReorderLevel" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="ManufacturerKey" ColumnName="ManufacturerKey" />
+                <ScalarProperty Name="StartYear" ColumnName="StartYear" />
+                <ScalarProperty Name="DepreciationFactor" ColumnName="DepreciationFactor" />
+                <ScalarProperty Name="AssetLife" ColumnName="AssetLife" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssetCategory">
+            <EntityTypeMapping TypeName="ERPMgtModel.AssetCategory">
+              <MappingFragment StoreEntitySet="AssetCategory">
+                <ScalarProperty Name="CategoryKey" ColumnName="CategoryKey" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssetSubcategory">
+            <EntityTypeMapping TypeName="ERPMgtModel.AssetSubcategory">
+              <MappingFragment StoreEntitySet="AssetSubcategory">
+                <ScalarProperty Name="SubcategoryKey" ColumnName="SubcategoryKey" />
+                <ScalarProperty Name="SubcategoryName" ColumnName="SubcategoryName" />
+                <ScalarProperty Name="SubcategoryID" ColumnName="SubcategoryID" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CategoryKey" ColumnName="CategoryKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="ERPMgtModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="CompanyKey" ColumnName="CompanyKey" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="CompanyPhone" ColumnName="CompanyPhone" />
+                <ScalarProperty Name="CompanyMobile" ColumnName="CompanyMobile" />
+                <ScalarProperty Name="CompanyEmail" ColumnName="CompanyEmail" />
+                <ScalarProperty Name="CompanyWebsite" ColumnName="CompanyWebsite" />
+                <ScalarProperty Name="CompanyFax" ColumnName="CompanyFax" />
+                <ScalarProperty Name="ContactPersonName" ColumnName="ContactPersonName" />
+                <ScalarProperty Name="ContactPersonNo" ColumnName="ContactPersonNo" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="LogoType" ColumnName="LogoType" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="DivisionKey" ColumnName="DivisionKey" />
+                <ScalarProperty Name="DistrictKey" ColumnName="DistrictKey" />
+                <ScalarProperty Name="UpazillaKey" ColumnName="UpazillaKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="ERPMgtModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerKey" ColumnName="CustomerKey" />
+                <ScalarProperty Name="WarehouseKey" ColumnName="WarehouseKey" />
+                <ScalarProperty Name="CustomeID" ColumnName="CustomeID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomeAddress" ColumnName="CustomeAddress" />
+                <ScalarProperty Name="CPhone" ColumnName="CPhone" />
+                <ScalarProperty Name="CMobile" ColumnName="CMobile" />
+                <ScalarProperty Name="CEmail" ColumnName="CEmail" />
+                <ScalarProperty Name="CWebsite" ColumnName="CWebsite" />
+                <ScalarProperty Name="CFax" ColumnName="CFax" />
+                <ScalarProperty Name="ContactPersonName" ColumnName="ContactPersonName" />
+                <ScalarProperty Name="ContactPersonNo" ColumnName="ContactPersonNo" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="LogoType" ColumnName="LogoType" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="DiscountPerc" ColumnName="DiscountPerc" />
+                <ScalarProperty Name="DiscountAmt" ColumnName="DiscountAmt" />
+                <ScalarProperty Name="Incentive" ColumnName="Incentive" />
+                <ScalarProperty Name="UpazillaKey" ColumnName="UpazillaKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="ERPMgtModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="DepartmentKey" ColumnName="DepartmentKey" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="WarehouseKey" ColumnName="WarehouseKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Designation">
+            <EntityTypeMapping TypeName="ERPMgtModel.Designation">
+              <MappingFragment StoreEntitySet="Designation">
+                <ScalarProperty Name="DesignationKey" ColumnName="DesignationKey" />
+                <ScalarProperty Name="DesignationtID" ColumnName="DesignationtID" />
+                <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
+                <ScalarProperty Name="DesignationLevel" ColumnName="DesignationLevel" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="WarehouseKey" ColumnName="WarehouseKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="District">
+            <EntityTypeMapping TypeName="ERPMgtModel.District">
+              <MappingFragment StoreEntitySet="District">
+                <ScalarProperty Name="DistrictKey" ColumnName="DistrictKey" />
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+                <ScalarProperty Name="DivisionKey" ColumnName="DivisionKey" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Division">
+            <EntityTypeMapping TypeName="ERPMgtModel.Division">
+              <MappingFragment StoreEntitySet="Division">
+                <ScalarProperty Name="DivisionKey" ColumnName="DivisionKey" />
+                <ScalarProperty Name="DivisionID" ColumnName="DivisionID" />
+                <ScalarProperty Name="DivisionName" ColumnName="DivisionName" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Forms">
+            <EntityTypeMapping TypeName="ERPMgtModel.Forms">
+              <MappingFragment StoreEntitySet="Forms">
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="FormName" ColumnName="FormName" />
+                <ScalarProperty Name="FormLevel" ColumnName="FormLevel" />
+                <ScalarProperty Name="FormController" ColumnName="FormController" />
+                <ScalarProperty Name="ViewName" ColumnName="ViewName" />
+                <ScalarProperty Name="SubModuleID" ColumnName="SubModuleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageFile">
+            <EntityTypeMapping TypeName="ERPMgtModel.ImageFile">
+              <MappingFragment StoreEntitySet="ImageFile">
+                <ScalarProperty Name="ImageFileKey" ColumnName="ImageFileKey" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="FileContent" ColumnName="FileContent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item">
+            <EntityTypeMapping TypeName="ERPMgtModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="ItemKey" ColumnName="ItemKey" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
+                <ScalarProperty Name="UnitKey" ColumnName="UnitKey" />
+                <ScalarProperty Name="Unitsize" ColumnName="Unitsize" />
+                <ScalarProperty Name="CategoryKey" ColumnName="CategoryKey" />
+                <ScalarProperty Name="SubcategoryKey" ColumnName="SubcategoryKey" />
+                <ScalarProperty Name="TypeKey" ColumnName="TypeKey" />
+                <ScalarProperty Name="ModelNo" ColumnName="ModelNo" />
+                <ScalarProperty Name="ItemColor" ColumnName="ItemColor" />
+                <ScalarProperty Name="ReorderLevel" ColumnName="ReorderLevel" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemCategory">
+            <EntityTypeMapping TypeName="ERPMgtModel.ItemCategory">
+              <MappingFragment StoreEntitySet="ItemCategory">
+                <ScalarProperty Name="CategoryKey" ColumnName="CategoryKey" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemSubcategory">
+            <EntityTypeMapping TypeName="ERPMgtModel.ItemSubcategory">
+              <MappingFragment StoreEntitySet="ItemSubcategory">
+                <ScalarProperty Name="SubcategoryKey" ColumnName="SubcategoryKey" />
+                <ScalarProperty Name="SubcategoryName" ColumnName="SubcategoryName" />
+                <ScalarProperty Name="SubcategoryID" ColumnName="SubcategoryID" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CategoryKey" ColumnName="CategoryKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemType">
+            <EntityTypeMapping TypeName="ERPMgtModel.ItemType">
+              <MappingFragment StoreEntitySet="ItemType">
+                <ScalarProperty Name="TypeKey" ColumnName="TypeKey" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Manufacturer">
+            <EntityTypeMapping TypeName="ERPMgtModel.Manufacturer">
+              <MappingFragment StoreEntitySet="Manufacturer">
+                <ScalarProperty Name="ManufacturerKey" ColumnName="ManufacturerKey" />
+                <ScalarProperty Name="ManufacturerID" ColumnName="ManufacturerID" />
+                <ScalarProperty Name="ManufacturerName" ColumnName="ManufacturerName" />
+                <ScalarProperty Name="ManufacturerAddress" ColumnName="ManufacturerAddress" />
+                <ScalarProperty Name="CountryOfOrigin" ColumnName="CountryOfOrigin" />
+                <ScalarProperty Name="CPhone" ColumnName="CPhone" />
+                <ScalarProperty Name="CEmail" ColumnName="CEmail" />
+                <ScalarProperty Name="CWebsite" ColumnName="CWebsite" />
+                <ScalarProperty Name="CFax" ColumnName="CFax" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="LogoType" ColumnName="LogoType" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modules">
+            <EntityTypeMapping TypeName="ERPMgtModel.Modules">
+              <MappingFragment StoreEntitySet="Modules">
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+                <ScalarProperty Name="ModuleLevel" ColumnName="ModuleLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductionProcessSetup">
+            <EntityTypeMapping TypeName="ERPMgtModel.ProductionProcessSetup">
+              <MappingFragment StoreEntitySet="ProductionProcessSetup">
+                <ScalarProperty Name="ProcessKey" ColumnName="ProcessKey" />
+                <ScalarProperty Name="ProcessID" ColumnName="ProcessID" />
+                <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
+                <ScalarProperty Name="ProcessLevel" ColumnName="ProcessLevel" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="WarehouseKey" ColumnName="WarehouseKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Row_Store">
+            <EntityTypeMapping TypeName="ERPMgtModel.Row_Store">
+              <MappingFragment StoreEntitySet="Row_Store">
+                <ScalarProperty Name="RowKey" ColumnName="RowKey" />
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="RowName" ColumnName="RowName" />
+                <ScalarProperty Name="RowLevel" ColumnName="RowLevel" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="WarehouseKey" ColumnName="WarehouseKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shelf">
+            <EntityTypeMapping TypeName="ERPMgtModel.Shelf">
+              <MappingFragment StoreEntitySet="Shelf">
+                <ScalarProperty Name="ShelfKey" ColumnName="ShelfKey" />
+                <ScalarProperty Name="ShelfID" ColumnName="ShelfID" />
+                <ScalarProperty Name="ShelfName" ColumnName="ShelfName" />
+                <ScalarProperty Name="ShelfLevel" ColumnName="ShelfLevel" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="WarehouseKey" ColumnName="WarehouseKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubModule">
+            <EntityTypeMapping TypeName="ERPMgtModel.SubModule">
+              <MappingFragment StoreEntitySet="SubModule">
+                <ScalarProperty Name="SubModuleID" ColumnName="SubModuleID" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="SubModuleName" ColumnName="SubModuleName" />
+                <ScalarProperty Name="SubModuleLevel" ColumnName="SubModuleLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supplier">
+            <EntityTypeMapping TypeName="ERPMgtModel.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+                <ScalarProperty Name="SupplierAddress" ColumnName="SupplierAddress" />
+                <ScalarProperty Name="SupplierPhone" ColumnName="SupplierPhone" />
+                <ScalarProperty Name="SupplierMobile" ColumnName="SupplierMobile" />
+                <ScalarProperty Name="SupplierEmail" ColumnName="SupplierEmail" />
+                <ScalarProperty Name="SupplierWebsite" ColumnName="SupplierWebsite" />
+                <ScalarProperty Name="SupplierFax" ColumnName="SupplierFax" />
+                <ScalarProperty Name="WarehouseKey" ColumnName="WarehouseKey" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="ContactPersonName" ColumnName="ContactPersonName" />
+                <ScalarProperty Name="ContactPersonNo" ColumnName="ContactPersonNo" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="LogoType" ColumnName="LogoType" />
+                <ScalarProperty Name="DiscountPerc" ColumnName="DiscountPerc" />
+                <ScalarProperty Name="DiscountAmt" ColumnName="DiscountAmt" />
+                <ScalarProperty Name="Incentive" ColumnName="Incentive" />
+                <ScalarProperty Name="UpazillaKey" ColumnName="UpazillaKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tax">
+            <EntityTypeMapping TypeName="ERPMgtModel.Tax">
+              <MappingFragment StoreEntitySet="Tax">
+                <ScalarProperty Name="TaxKey" ColumnName="TaxKey" />
+                <ScalarProperty Name="TaxID" ColumnName="TaxID" />
+                <ScalarProperty Name="Amt" ColumnName="Amt" />
+                <ScalarProperty Name="WarehouseKey" ColumnName="WarehouseKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Unit">
+            <EntityTypeMapping TypeName="ERPMgtModel.Unit">
+              <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="UnitKey" ColumnName="UnitKey" />
+                <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Upazilla">
+            <EntityTypeMapping TypeName="ERPMgtModel.Upazilla">
+              <MappingFragment StoreEntitySet="Upazilla">
+                <ScalarProperty Name="UpazillaKey" ColumnName="UpazillaKey" />
+                <ScalarProperty Name="UpazillaID" ColumnName="UpazillaID" />
+                <ScalarProperty Name="UpazillaName" ColumnName="UpazillaName" />
+                <ScalarProperty Name="DistrictKey" ColumnName="DistrictKey" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="ERPMgtModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserKey" ColumnName="UserKey" />
+                <ScalarProperty Name="DesignationKey" ColumnName="DesignationKey" />
+                <ScalarProperty Name="DepartmentKey" ColumnName="DepartmentKey" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="UpazillaKey" ColumnName="UpazillaKey" />
+                <ScalarProperty Name="NationalID" ColumnName="NationalID" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+                <ScalarProperty Name="EmergencyPhone" ColumnName="EmergencyPhone" />
+                <ScalarProperty Name="Relationship" ColumnName="Relationship" />
+                <ScalarProperty Name="Pic" ColumnName="Pic" />
+                <ScalarProperty Name="pictype" ColumnName="pictype" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="WarhouseKey" ColumnName="WarhouseKey" />
+                <ScalarProperty Name="GroupKey" ColumnName="GroupKey" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usergroup">
+            <EntityTypeMapping TypeName="ERPMgtModel.Usergroup">
+              <MappingFragment StoreEntitySet="Usergroup">
+                <ScalarProperty Name="GroupKey" ColumnName="GroupKey" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsergroupToForm">
+            <EntityTypeMapping TypeName="ERPMgtModel.UsergroupToForm">
+              <MappingFragment StoreEntitySet="UsergroupToForm">
+                <ScalarProperty Name="UsergroupToFormKey" ColumnName="UsergroupToFormKey" />
+                <ScalarProperty Name="FormKey" ColumnName="FormKey" />
+                <ScalarProperty Name="GroupKey" ColumnName="GroupKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsergroupToModule">
+            <EntityTypeMapping TypeName="ERPMgtModel.UsergroupToModule">
+              <MappingFragment StoreEntitySet="UsergroupToModule">
+                <ScalarProperty Name="GroupToModuleKey" ColumnName="GroupToModuleKey" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="GroupKey" ColumnName="GroupKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsergroupToSubmodule">
+            <EntityTypeMapping TypeName="ERPMgtModel.UsergroupToSubmodule">
+              <MappingFragment StoreEntitySet="UsergroupToSubmodule">
+                <ScalarProperty Name="GroupToSubModuleKey" ColumnName="GroupToSubModuleKey" />
+                <ScalarProperty Name="SubModuleID" ColumnName="SubModuleID" />
+                <ScalarProperty Name="GroupKey" ColumnName="GroupKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warehouse">
+            <EntityTypeMapping TypeName="ERPMgtModel.Warehouse">
+              <MappingFragment StoreEntitySet="Warehouse">
+                <ScalarProperty Name="WarehouseKey" ColumnName="WarehouseKey" />
+                <ScalarProperty Name="WahouseID" ColumnName="WahouseID" />
+                <ScalarProperty Name="WahouseName" ColumnName="WahouseName" />
+                <ScalarProperty Name="WahouseAddress" ColumnName="WahouseAddress" />
+                <ScalarProperty Name="WahousePhone" ColumnName="WahousePhone" />
+                <ScalarProperty Name="WahouseMobile" ColumnName="WahouseMobile" />
+                <ScalarProperty Name="WahouseEmail" ColumnName="WahouseEmail" />
+                <ScalarProperty Name="WahouseWebsite" ColumnName="WahouseWebsite" />
+                <ScalarProperty Name="WahouseFax" ColumnName="WahouseFax" />
+                <ScalarProperty Name="ContactPersonName" ColumnName="ContactPersonName" />
+                <ScalarProperty Name="ContactPersonNo" ColumnName="ContactPersonNo" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="LogoType" ColumnName="LogoType" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="DivisionKey" ColumnName="DivisionKey" />
+                <ScalarProperty Name="DistrictKey" ColumnName="DistrictKey" />
+                <ScalarProperty Name="UpazillaKey" ColumnName="UpazillaKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
