@@ -1,0 +1,155 @@
+﻿@model ERP_Compact.Models.AisleViewModel
+@{
+    ViewBag.Title = "Store Asile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.dataTables.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.js"></script>
+<script type="text/javascript">
+        $(function () {
+
+            $('#ctable').dataTable();
+            var path_to_delete;
+
+            $(".deleteAisle").click(function (e) {
+                path_to_delete = $(this).data('path');
+            });
+            $('#btnContinueDelete').click(function () {
+                window.location = path_to_delete;
+            });
+        });
+
+</script>
+<script src="~/Scripts/AutoComplete/scAisle.js"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#msgSuccess').hide();
+
+            $(".discussion-comment").click(function (event) {
+                $('#AisleKey').val($(this).attr("discussion-id"));
+                $('#myModal').modal('show');
+                $('#btnUpdate').show();
+                $('#btnAdd').hide();
+                var w = "#AisleKey";
+                var url = '@Url.Content("~/")' + "Utility/LoadAisle";
+                $.getJSON(url, { SelectID: $(w).val() }, function (data) {
+
+                    $('#AisleID').val(data["AisleID"]);
+                    $('#AisleName').val(data["AisleName"]);
+                    $('#AisleLevel').val(data["AisleLevel"]);
+
+
+                });
+
+
+            });
+    });
+
+</script>
+
+
+
+<div class="panel panel-flat">
+    <div class="panel-heading">
+
+        <h2>
+            List of Asile
+        </h2>
+
+    </div>
+    <div class="panel-body">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Asile</button>
+    </div>
+    <div class="panel-body">
+
+        <table class="table table-bordered table-hover datatable-highlight" id="ctable">
+            <thead><tr><th>Asile ID</th><th>Asile Name</th><th>Asile Level</th><th>Action</th></tr></thead>
+            <tbody>
+
+                @foreach (var item in Model.AisleList)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AisleID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AisleName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AisleLevel)
+                        </td>
+                        <td>
+                            <a class="discussion-comment btn" discussion-id="@item.AisleKey" href="#">Edit</a> ||
+
+                            <a id="deleteAisle" class="deleteAisle btn" data-target="#basic" data-toggle="modal" data-path="@Url.Action("Delete", "MgtStore",new{ID=item.AisleKey})">Delete</a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Add New Asile</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AisleID, "Aisle ID")
+                            @Html.HiddenFor(model => model.AisleKey, new { id = "AisleKey" })
+                            @Html.TextBoxFor(model => model.AisleID, new { placeholder = " AisleID", id = "AisleID", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AisleID, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AisleName, "Aisle Name")
+                            @Html.TextBoxFor(model => model.AisleName, new { @required = "required", placeholder = " Aisle Name", id = "AisleName", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AisleName, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AisleLevel, "Aisle Level")
+                            @Html.TextBoxFor(model => model.AisleLevel, new { @required = "required", placeholder = " Aisle Level ", id = "AisleLevel", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AisleLevel, "", new { @class = "text-danger" })
+
+                        </div>
+
+                    </form>
+                    <div class="form-group" id="msgSuccess"><h4 class="alert alert-danger">Data is successfully Saved on database.</h4></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                    <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Delete Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this?
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" type="button" class="btn btn-default">Cancel</button>
+                    <button id="btnContinueDelete" type="button" class="btn btn-info">Continue To Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+

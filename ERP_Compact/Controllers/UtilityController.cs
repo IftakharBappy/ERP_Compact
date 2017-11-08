@@ -28,6 +28,19 @@ namespace ERP_Compact.Controllers
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return result;
         }
+        public ActionResult LoadAisle(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            AisleViewModel obj = new AisleViewModel();
+            Aisle m = db.Aisle.Find(SelectID);
+            obj.AisleKey = m.AisleKey;
+            obj.AisleID = m.AisleID;
+            obj.AisleName = m.AisleName;
+            obj.AisleLevel = m.AisleLevel;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
