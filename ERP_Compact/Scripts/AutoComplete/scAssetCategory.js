@@ -5,13 +5,13 @@ function Add() {
         return false;
     }
     var empObj = {
-        AisleKey: $('#AisleKey').val(),
-        AisleID: $('#AisleID').val(),
-        AisleName: $('#AisleName').val(),
-        AisleLevel: $('#AisleLevel').val()
+        CategoryKey: $('#CategoryKey').val(),
+        CategoryID: $('#CategoryID').val(),
+        CategoryName: $('#CategoryName').val(),
+
     };
     $.ajax({
-        url: "/MgtStore/Add",
+        url: "/MgtAssetCategory/Add",
         data: JSON.stringify(empObj),
         type: "POST",
         contentType: "application/json;charset=utf-8",
@@ -36,13 +36,12 @@ function Update() {
         return false;
     }
     var empObj = {
-        AisleKey: $('#AisleKey').val(),
-        AisleID: $('#AisleID').val(),
-        AisleName: $('#AisleName').val(),
-        AisleLevel: $('#AisleLevel').val()
+        CategoryKey: $('#CategoryKey').val(),
+        CategoryID: $('#CategoryID').val(),
+        CategoryName: $('#CategoryName').val(),
     };
     $.ajax({
-        url: "/MgtStore/Update",
+        url: "/MgtAssetCategory/Update",
         data: JSON.stringify(empObj),
         type: "POST",
         contentType: "application/json;charset=utf-8",
@@ -63,28 +62,27 @@ function Update() {
 //Function for clearing the textboxes  
 function clearTextBox() {
 
-    $('#AisleKey').val("");
-    $('#AisleID').val("");
-    $('#AisleName').val("");
-    $('#AisleLevel').val("");
+    CategoryKey: $('#CategoryKey').val();
+    CategoryID: $('#CategoryID').val();
+    CategoryName: $('#CategoryName').val();
 
 }
 //Valdidation using jquery  
 function validate() {
     var isValid = true;
-    if ($('#AisleName').val().trim() === "") {
-        $('#AisleName').css('border-color', 'Red');
+    if ($('#CategoryName').val().trim() === "") {
+        $('#CategoryName').css('border-color', 'Red');
         isValid = false;
     }
     else {
-        $('#AisleName').css('border-color', 'lightgrey');
+        $('#CategoryName').css('border-color', 'lightgrey');
     }
-    if ($('#AisleID').val().trim() === "") {
-        $('#AisleID').val($('#AisleName').val());
-        $('#AisleID').css('border-color', 'lightgrey');
+    if ($('#CategoryID').val().trim() === "") {
+        $('#CategoryID').val($('#CategoryName').val());
+        $('#CategoryID').css('border-color', 'lightgrey');
     }
     else {
-        $('#AisleID').css('border-color', 'lightgrey');
+        $('#CategoryID').css('border-color', 'lightgrey');
     }
 
     return isValid;

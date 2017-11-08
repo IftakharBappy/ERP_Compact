@@ -41,6 +41,18 @@ namespace ERP_Compact.Controllers
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return result;
         }
+        public ActionResult LoadAssetCategory(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            AssetCategoryViewModel obj = new AssetCategoryViewModel();
+            AssetCategory m = db.AssetCategory.Find(SelectID);
+            obj.CategoryKey = m.CategoryKey;
+            obj.CategoryID = m.CategoryID;
+            obj.CategoryName = m.CategoryName;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
