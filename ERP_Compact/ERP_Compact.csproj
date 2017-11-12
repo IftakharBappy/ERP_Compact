@@ -201,6 +201,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MgtAssetCategoryController.cs" />
+    <Compile Include="Controllers\MgtAssetSubcategoryController.cs" />
     <Compile Include="Controllers\MgtDivisionController.cs" />
     <Compile Include="Controllers\MgtStoreController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
@@ -223,6 +224,7 @@
     <Compile Include="Models\AssetSubcategory.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AssetSubcategoryViewModel.cs" />
     <Compile Include="Models\Company.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -1026,6 +1028,7 @@
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\AutoComplete\scAisle.js" />
     <Content Include="Scripts\AutoComplete\scAssetCategory.js" />
+    <Content Include="Scripts\AutoComplete\scAssetSubCategory.js" />
     <Content Include="Scripts\AutoComplete\scDivision.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1301,6 +1304,7 @@
     <Content Include="Views\MgtDivision\Index.cshtml" />
     <Content Include="Views\MgtStore\Index.cshtml" />
     <Content Include="Views\MgtAssetCategory\Index.cshtml" />
+    <Content Include="Views\MgtAssetSubcategory\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
