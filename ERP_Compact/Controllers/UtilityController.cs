@@ -80,6 +80,16 @@ namespace ERP_Compact.Controllers
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return result;
         }
+        public JsonResult GetDistrictsOfDivision (Guid divisionKey)
+        {
+            var res = db.District.Where(d => d.DivisionKey == divisionKey && d.IsDelete == false).Select( x=> new { x.DistrictKey, x.DistrictName }).ToList();
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetUpazillasOfDistrict(Guid districtKey)
+        {
+            var res = db.Upazilla.Where(d => d.DistrictKey == districtKey && d.IsDelete == false).Select(x => new { x.UpazillaKey, x.UpazillaName }).ToList();
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
