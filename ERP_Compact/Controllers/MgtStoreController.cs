@@ -31,19 +31,21 @@ namespace ERP_Compact.Controllers
         {
                 try
                 {
-                        Aisle model = new Aisle();
-                        model.AisleKey = Guid.NewGuid();
-                        model.AisleName = obj.AisleName;
-                        model.AisleID = obj.AisleID;
-                        model.AisleLevel = obj.AisleLevel;
-                        //model.WarehouseKey = GlobalClass.Warehouse.WarehouseKey;
-                        model.IsDelete = false;
-                        if (string.IsNullOrEmpty(obj.AisleID)) model.AisleID = obj.AisleName;
-                        if (obj.AisleLevel == null) { model.AisleLevel = 0; }
+                if (ModelState.IsValid)
+                {
+                    Aisle model = new Aisle();
+                    model.AisleKey = Guid.NewGuid();
+                    model.AisleName = obj.AisleName;
+                    model.AisleID = obj.AisleID;
+                    model.AisleLevel = obj.AisleLevel;
+                    //model.WarehouseKey = GlobalClass.Warehouse.WarehouseKey;
+                    model.IsDelete = false;
+                    if (string.IsNullOrEmpty(obj.AisleID)) model.AisleID = obj.AisleName;
+                    if (obj.AisleLevel == null) { model.AisleLevel = 0; }
 
-                        db.Aisle.Add(model);
-                        db.SaveChanges();
-
+                    db.Aisle.Add(model);
+                    db.SaveChanges();
+                }
                         return Json(obj, JsonRequestBehavior.AllowGet);
 
 
@@ -58,17 +60,19 @@ namespace ERP_Compact.Controllers
         {
             try
             {
-                Aisle model = db.Aisle.Find(obj.AisleKey);
-                model.AisleName = obj.AisleName;
-                model.AisleID = obj.AisleID;
-                model.AisleLevel = obj.AisleLevel;
-                //model.WarehouseKey = GlobalClass.Warehouse.WarehouseKey;
-                model.IsDelete = false;
-                if (string.IsNullOrEmpty(obj.AisleID)) model.AisleID = obj.AisleName;
-                if (obj.AisleLevel == null) { model.AisleLevel = 0; }
+                if (ModelState.IsValid)
+                {
+                    Aisle model = db.Aisle.Find(obj.AisleKey);
+                    model.AisleName = obj.AisleName;
+                    model.AisleID = obj.AisleID;
+                    model.AisleLevel = obj.AisleLevel;
+                    //model.WarehouseKey = GlobalClass.Warehouse.WarehouseKey;
+                    model.IsDelete = false;
+                    if (string.IsNullOrEmpty(obj.AisleID)) model.AisleID = obj.AisleName;
+                    if (obj.AisleLevel == null) { model.AisleLevel = 0; }
 
-                db.SaveChanges();
-
+                    db.SaveChanges();
+                }
                 return Json(obj, JsonRequestBehavior.AllowGet);
 
 
@@ -94,6 +98,15 @@ namespace ERP_Compact.Controllers
                 ModelState.AddModelError(string.Empty, "Some error happened");
                 return View(ID);
             }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
 
     }

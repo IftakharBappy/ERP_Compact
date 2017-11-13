@@ -7,61 +7,61 @@ using System.Web.Mvc;
 
 namespace ERP_Compact.Controllers
 {
-    public class MgtAssetCategoryController : Controller
+    public class MgtDepartmentController : Controller
     {
-        // GET: MgtAssetCategory
+        // GET: MgtDepartment
         ERPMgtEntities db = new ERPMgtEntities();
         public ActionResult Index()
         {
-            AssetCategoryViewModel model = new AssetCategoryViewModel();
-            model.AssetCategoryList = db.AssetCategory.Where(a => a.IsDelete == false).Select(x => new AssetCategoryViewModel()
+            DepartmentViewModel model = new DepartmentViewModel();
+            model.DepartmentList = db.Department.Where(a => a.IsDelete == false).Select(x => new DepartmentViewModel()
             {
-                CategoryKey = x.CategoryKey,
-                CategoryID = x.CategoryID,
-                CategoryName = x.CategoryName,
+                DepartmentKey = x.DepartmentKey,
+                DepartmentID = x.DepartmentID,
+                DepartmentName = x.DepartmentName,
+
             }).ToList();
 
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Add(AssetCategoryViewModel obj)
+        public ActionResult Add(DepartmentViewModel obj)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    AssetCategory model = new AssetCategory();
-                    model.CategoryKey = Guid.NewGuid();
-                    model.CategoryID = obj.CategoryID;
-                    model.CategoryName = obj.CategoryName;
+                    Department model = new Department();
+                    model.DepartmentKey = Guid.NewGuid();
+                    model.DepartmentID = obj.DepartmentID;
+                    model.DepartmentName = obj.DepartmentName;
                     model.IsDelete = false;
-                    if (string.IsNullOrEmpty(obj.CategoryID)) model.CategoryID = obj.CategoryName;
+                    if (string.IsNullOrEmpty(obj.DepartmentID)) model.DepartmentID = obj.DepartmentName;
 
-                    db.AssetCategory.Add(model);
+                    db.Department.Add(model);
                     db.SaveChanges();
+
                 }
                 return Json(obj, JsonRequestBehavior.AllowGet);
-
-
             }
             catch (Exception ex)
             {
-                return View("Error", new HandleErrorInfo(ex, "MgtAssetCategory", "Index"));
+                return View("Error", new HandleErrorInfo(ex, "MgtDepartment", "Index"));
             }
         }
         [HttpPost]
-        public ActionResult Update(AssetCategoryViewModel obj)
+        public ActionResult Update(DepartmentViewModel obj)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    AssetCategory model = db.AssetCategory.Find(obj.CategoryKey);
-                    model.CategoryID = obj.CategoryID;
-                    model.CategoryName = obj.CategoryName;
+                    Department model = db.Department.Find(obj.DepartmentKey);
+                    model.DepartmentID = obj.DepartmentID;
+                    model.DepartmentName = obj.DepartmentName;
                     model.IsDelete = false;
-                    if (string.IsNullOrEmpty(obj.CategoryID)) model.CategoryID = obj.CategoryName;
+                    if (string.IsNullOrEmpty(obj.DepartmentID)) model.DepartmentID = obj.DepartmentName;
 
                     db.SaveChanges();
                 }
@@ -71,7 +71,7 @@ namespace ERP_Compact.Controllers
             }
             catch (Exception ex)
             {
-                return View("Error", new HandleErrorInfo(ex, "MgtAssetCategory", "Index"));
+                return View("Error", new HandleErrorInfo(ex, "MgtDepartment", "Index"));
             }
         }
 
@@ -79,7 +79,7 @@ namespace ERP_Compact.Controllers
         {
             try
             {
-                AssetCategory model = db.AssetCategory.Find(ID);
+                Department model = db.Department.Find(ID);
                 model.IsDelete = true;
                 db.SaveChanges();
                 return RedirectToAction("Index");

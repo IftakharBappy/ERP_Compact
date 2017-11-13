@@ -54,6 +54,19 @@ namespace ERP_Compact.Controllers
             return result;
         }
 
+        public ActionResult LoadDepartmentView(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            DepartmentViewModel obj = new DepartmentViewModel();
+            Department m = db.Department.Find(SelectID);
+            obj.DepartmentKey = m.DepartmentKey;
+            obj.DepartmentID = m.DepartmentID;
+            obj.DepartmentName = m.DepartmentName;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
+
         public ActionResult LoadAssetSubCategory(Guid SelectID)
         {
             JsonResult result = new JsonResult();

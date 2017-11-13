@@ -34,20 +34,21 @@ namespace ERP_Compact.Controllers
         {
             try
             {
-                AssetSubcategory model = new AssetSubcategory();
-                model.SubcategoryKey = Guid.NewGuid();
-                model.SubcategoryID = obj.SubcategoryID;
-                model.SubcategoryName = obj.SubcategoryName;
-                model.CategoryKey = obj.CategoryKey;
-                model.IsDelete = false;
-                if (string.IsNullOrEmpty(obj.SubcategoryID)) model.SubcategoryID = obj.SubcategoryName;
+                if (ModelState.IsValid)
+                {
+                    AssetSubcategory model = new AssetSubcategory();
+                    model.SubcategoryKey = Guid.NewGuid();
+                    model.SubcategoryID = obj.SubcategoryID;
+                    model.SubcategoryName = obj.SubcategoryName;
+                    model.CategoryKey = obj.CategoryKey;
+                    model.IsDelete = false;
+                    if (string.IsNullOrEmpty(obj.SubcategoryID)) model.SubcategoryID = obj.SubcategoryName;
 
-                db.AssetSubcategory.Add(model);
-                db.SaveChanges();
+                    db.AssetSubcategory.Add(model);
+                    db.SaveChanges();  
 
+                }
                 return Json(obj, JsonRequestBehavior.AllowGet);
-
-
             }
             catch (Exception ex)
             {
@@ -59,15 +60,17 @@ namespace ERP_Compact.Controllers
         {
             try
             {
-                AssetSubcategory model = db.AssetSubcategory.Find(obj.SubcategoryKey);
-                model.CategoryKey = obj.CategoryKey;
-                model.SubcategoryID = obj.SubcategoryID;
-                model.SubcategoryName = obj.SubcategoryName;
-                model.IsDelete = false;
-                if (string.IsNullOrEmpty(obj.SubcategoryID)) model.SubcategoryID = obj.SubcategoryName;
+                if (ModelState.IsValid)
+                {
+                    AssetSubcategory model = db.AssetSubcategory.Find(obj.SubcategoryKey);
+                    model.CategoryKey = obj.CategoryKey;
+                    model.SubcategoryID = obj.SubcategoryID;
+                    model.SubcategoryName = obj.SubcategoryName;
+                    model.IsDelete = false;
+                    if (string.IsNullOrEmpty(obj.SubcategoryID)) model.SubcategoryID = obj.SubcategoryName;
 
-                db.SaveChanges();
-
+                    db.SaveChanges();
+                }
                 return Json(obj, JsonRequestBehavior.AllowGet);
 
 
@@ -125,6 +128,14 @@ namespace ERP_Compact.Controllers
                             Selected = AssetCategory.CategoryKey == id ? "selected" : ""
                         }).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
