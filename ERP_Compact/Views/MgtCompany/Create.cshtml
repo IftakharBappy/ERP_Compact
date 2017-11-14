@@ -162,7 +162,7 @@
             url: "/Utility/GetDistrictsOfDivision/",
             data: JSON.stringify({ divisionKey: DivisionKey }),
             success: function (data) {
-                var res = "<option>Select</option>";
+                var res = "<option value=''>Select</option>";
                 for (var i = 0; i < data.length; i++) {
                     res = res + "<option value='" + data[i].DistrictKey + "' >" + data[i].DistrictName + "</option>";
                 }
@@ -188,7 +188,7 @@
             url: "/Utility/GetUpazillasOfDistrict/",
             data: JSON.stringify({ districtKey: DistrictKey }),
             success: function (data) {
-                var res = "<option>Select</option>";
+                var res = "<option value=''>Select</option>";
                 for (var i = 0; i < data.length; i++) {
                     res = res + "<option value='" + data[i].UpazillaKey + "' >" + data[i].UpazillaName + "</option>";
                 }

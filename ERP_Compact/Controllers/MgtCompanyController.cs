@@ -56,11 +56,10 @@ namespace ERP_Compact.Controllers
                     Logo = model.Logo,
                     LogoType = model.LogoType,
                 };
+
                 viewModel.DivisionName = model.Division != null ? model.Division.DivisionName : "n/a";
                 viewModel.DistrictName= model.District != null ? model.District.DistrictName : "n/a";
                 viewModel.UpazillaName= model.Upazilla != null ? model.Upazilla.UpazillaName : "n/a";
-
-
 
                 return View(viewModel);
             }
@@ -101,7 +100,7 @@ namespace ERP_Compact.Controllers
                     model.DivisionKey = viewModel.DivisionKey;
                     model.DistrictKey = viewModel.DistrictKey;
                     model.UpazillaKey = viewModel.UpazillaKey;
-                    //logo
+                    
                     byte[] imgBinaryData = new byte[Logo.ContentLength];
                     int readresult = Logo.InputStream.Read(imgBinaryData, 0, Logo.ContentLength);
                     model.Logo = imgBinaryData;
@@ -152,6 +151,7 @@ namespace ERP_Compact.Controllers
                 Logo = model.Logo,
                 LogoType = model.LogoType
             }).FirstOrDefault();
+
             if (viewModel == null)
             {
                 return HttpNotFound();
@@ -166,8 +166,8 @@ namespace ERP_Compact.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Exclude = "Logo")] CompanyViewModel viewModel, HttpPostedFileBase Logo)
-        {
 
+        {
             if (ModelState.IsValid)
             {
                 try
@@ -187,7 +187,7 @@ namespace ERP_Compact.Controllers
                     model.DivisionKey = viewModel.DivisionKey;
                     model.DistrictKey = viewModel.DistrictKey;
                     model.UpazillaKey = viewModel.UpazillaKey;
-                    //logo
+
                     if (viewModel.KeepOldLogo == false)
                     {
                         byte[] imgBinaryData = new byte[Logo.ContentLength];
@@ -196,6 +196,7 @@ namespace ERP_Compact.Controllers
                         model.LogoType = Logo.ContentType;
                     }
                     db.SaveChanges();
+
                     RenderSuccessMessage("Company is successfully updated.");
                     return RedirectToAction("Index");
                 }
@@ -211,6 +212,7 @@ namespace ERP_Compact.Controllers
                 ViewBag.DivisionKey = new SelectList(db.Division.Where(x => x.IsDelete == false), "DivisionKey", "DivisionID", viewModel.DivisionKey);
                 ViewBag.DistrictKey = new SelectList(db.District.Where(x => x.IsDelete == false && x.DivisionKey == viewModel.DivisionKey), "DistrictKey", "DistrictID", viewModel.DistrictKey);
                 ViewBag.UpazillaKey = new SelectList(db.Upazilla.Where(x => x.IsDelete == false && x.DistrictKey == viewModel.DistrictKey), "UpazillaKey", "UpazillaID", viewModel.UpazillaKey);
+
                 RenderInfoMessage("Please, provide all required data.");
                 return View(viewModel);
             }
