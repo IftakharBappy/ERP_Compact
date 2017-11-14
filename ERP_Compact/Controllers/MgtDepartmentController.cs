@@ -38,7 +38,7 @@ namespace ERP_Compact.Controllers
                     model.DepartmentName = obj.DepartmentName;
                     model.IsDelete = false;
                     if (string.IsNullOrEmpty(obj.DepartmentID)) model.DepartmentID = obj.DepartmentName;
-
+                    //model.WarehouseKey = GlobalClass.Warehouse.WarehouseKey;
                     db.Department.Add(model);
                     db.SaveChanges();
 
@@ -62,7 +62,7 @@ namespace ERP_Compact.Controllers
                     model.DepartmentName = obj.DepartmentName;
                     model.IsDelete = false;
                     if (string.IsNullOrEmpty(obj.DepartmentID)) model.DepartmentID = obj.DepartmentName;
-
+                    //model.WarehouseKey = GlobalClass.Warehouse.WarehouseKey;
                     db.SaveChanges();
                 }
                 return Json(obj, JsonRequestBehavior.AllowGet);

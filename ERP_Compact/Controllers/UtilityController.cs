@@ -80,6 +80,19 @@ namespace ERP_Compact.Controllers
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return result;
         }
+        public ActionResult LoadDesignation(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            DesignationViewModel obj = new DesignationViewModel();
+            Designation m = db.Designation.Find(SelectID);
+            obj.DesignationKey = m.DesignationKey;
+            obj.DesignationtID = m.DesignationtID;
+            obj.DesignationName = m.DesignationName;
+            obj.DesignationLevel = m.DesignationLevel;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
         public JsonResult GetDistrictsOfDivision (Guid divisionKey)
         {
             var res = db.District.Where(d => d.DivisionKey == divisionKey && d.IsDelete == false).Select( x=> new { x.DistrictKey, x.DistrictName }).ToList();

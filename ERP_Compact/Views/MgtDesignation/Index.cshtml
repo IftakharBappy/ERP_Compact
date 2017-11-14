@@ -1,0 +1,155 @@
+﻿@model ERP_Compact.Models.DesignationViewModel
+@{
+    ViewBag.Title = "Designation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.dataTables.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.js"></script>
+<script type="text/javascript">
+        $(function () {
+
+            $('#ctable').dataTable();
+            var path_to_delete;
+
+            $(".deleteAssetCat").click(function (e) {
+                path_to_delete = $(this).data('path');
+            });
+            $('#btnContinueDelete').click(function () {
+                window.location = path_to_delete;
+            });
+        });
+
+</script>
+<script src="~/Scripts/AutoComplete/scDesignation.js"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#msgSuccess').hide();
+
+            $(".discussion-comment").click(function (event) {
+                $('#DesignationKey').val($(this).attr("discussion-id"));
+                $('#myModal').modal('show');
+                $('#btnUpdate').show();
+                $('#btnAdd').hide();
+                var w = "#DesignationKey";
+                var url = '@Url.Content("~/")' + "Utility/LoadDesignation";
+                $.getJSON(url, { SelectID: $(w).val() }, function (data) {
+
+                    $('#DesignationtID').val(data["DesignationtID"]);
+                    $('#DesignationName').val(data["DesignationName"]);
+                    $('#DesignationLevel').val(data["DesignationLevel"]);
+
+                });
+
+
+            });
+    });
+
+</script>
+
+
+
+<div class="panel panel-flat">
+    <div class="panel-heading">
+
+        <h2>
+            List of Designation
+        </h2>
+
+    </div>
+    <div class="panel-body">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Designation</button>
+    </div>
+    <div class="panel-body">
+
+        <table class="table table-bordered table-hover datatable-highlight" id="ctable">
+            <thead><tr><th>Designation ID</th><th>Designation Name</th><th>Designation Level</th><th>Action</th></tr></thead>
+            <tbody>
+
+                @foreach (var item in Model.DesignationList)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DesignationtID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DesignationName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DesignationLevel)
+                        </td>
+                        <td>
+                            <a class="discussion-comment btn" discussion-id="@item.DesignationKey" href="#">Edit</a> ||
+
+                            <a id="deleteAisle" class="deleteAssetCat btn" data-target="#basic" data-toggle="modal" data-path="@Url.Action("Delete", "MgtDesignation",new{ID=item.DesignationKey})">Delete</a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Add New Designation</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DesignationtID, "Designationt ID")
+                            @Html.HiddenFor(model => model.DesignationKey, new { id = "DesignationKey" })
+                            @Html.TextBoxFor(model => model.DesignationtID, new { placeholder = " Designationt ID", id = "DesignationtID", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DesignationtID, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DesignationName, "Designation Name")
+                            @Html.TextBoxFor(model => model.DesignationName, new { @required = "required", placeholder = " Designation Name", id = "DesignationName", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DesignationName, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DesignationLevel, "Designation Level")
+                            @Html.TextBoxFor(model => model.DesignationLevel, new { @required = "required", placeholder = " Designation Level", id = "DesignationLevel", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DesignationLevel, "", new { @class = "text-danger" })
+
+                        </div>
+                    </form>
+                    <div class="form-group" id="msgSuccess"><h4 class="alert alert-danger">Data is successfully Saved on database.</h4></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                    <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Delete Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this?
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" type="button" class="btn btn-default">Cancel</button>
+                    <button id="btnContinueDelete" type="button" class="btn btn-info">Continue To Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
