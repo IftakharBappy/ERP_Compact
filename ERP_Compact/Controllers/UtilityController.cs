@@ -93,6 +93,20 @@ namespace ERP_Compact.Controllers
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return result;
         }
+
+        public ActionResult LoadDistrict(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            DistrictViewModel obj = new DistrictViewModel();
+            District m = db.District.Find(SelectID);
+            obj.DistrictKey = m.DistrictKey;
+            obj.DistrictID = m.DistrictID;
+            obj.DistrictName = m.DistrictName;
+            obj.DivisionKey = m.DivisionKey;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
         public JsonResult GetDistrictsOfDivision (Guid divisionKey)
         {
             var res = db.District.Where(d => d.DivisionKey == divisionKey && d.IsDelete == false).Select( x=> new { x.DistrictKey, x.DistrictName }).ToList();

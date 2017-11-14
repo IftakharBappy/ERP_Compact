@@ -1,0 +1,199 @@
+﻿@model ERP_Compact.Models.DistrictViewModel
+@{
+    ViewBag.Title = "District";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.dataTables.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.js"></script>
+<script type="text/javascript">
+        $(function () {
+
+            $('#ctable').dataTable();
+            var path_to_delete;
+
+            $(".deleteDistrict").click(function (e) {
+                path_to_delete = $(this).data('path');
+            });
+            $('#btnContinueDelete').click(function () {
+                window.location = path_to_delete;
+            });
+        });
+
+</script>
+<script src="~/Scripts/AutoComplete/scDistrict.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#msgSuccess').hide();
+        LoadDivisionDropDown_ToCreate();
+        LoadDivisionDropDown_ToEdit();
+        $(".discussion-comment").click(function (event) {
+            $('#DistrictKey').val($(this).attr("discussion-id"));
+            $('#myModal').modal('show');
+            $('#btnUpdate').show();
+            $('#btnAdd').hide();
+            var w = "#DistrictKey";
+            var url = '@Url.Content("~/")' + "Utility/LoadDistrict";
+                $.getJSON(url, { SelectID: $(w).val() }, function (data) {
+
+                    $('#DistrictID').val(data["DistrictID"]);
+                    $('#DistrictName').val(data["DistrictName"]);
+                    $('#DivisionKey').val(data["DivisionKey"]);
+                });
+
+            });
+    });
+
+    function LoadDivisionDropDown_ToCreate() {
+        var select = $('select[name=DivisionKey]');
+        $.ajax({
+            traditional: true,
+            type: "post",
+            dataType: "json",
+            contentType: "application/json",
+            url: "/MgtDistrict/LoadDivisionDropDown_ToCreate/",
+            data: JSON.stringify({ id: '@Model.DivisionKey' }),
+            success: function (data) {
+                var res = "<option>Select</option>";
+                for (var i = 0; i < data.length; i++) {
+                    res = res + "<option value='" + data[i].DivisionKey + "' " + data[i].Selected + ">" + data[i].DivisionName + "</option>";
+                }
+                select.html(res);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Error on ajax call");
+            }
+        });
+    }
+    function LoadDivisionDropDown_ToEdit() {
+        var select = $('select[name=DivisionKey]');
+        $.ajax({
+            traditional: true,
+            type: "post",
+            dataType: "json",
+            contentType: "application/json",
+            url: "/MgtDistrict/LoadDivisionDropDown_ToEdit/",
+            data: JSON.stringify({ id: '@Model.DivisionKey' }),
+            success: function (data) {
+                var res = "<option>Select</option>";
+                for (var i = 0; i < data.length; i++) {
+                    res = res + "<option value='" + data[i].DivisionKey + "' " + data[i].Selected + ">" + data[i].DivisionName + "</option>";
+                }
+                select.html(res);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Error on ajax call");
+            }
+        });
+    }
+
+</script>
+
+
+
+<div class="panel panel-flat">
+    <div class="panel-heading">
+
+        <h2>
+            List of District
+        </h2>
+
+    </div>
+    <div class="panel-body">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New District</button>
+    </div>
+    <div class="panel-body">
+
+        <table class="table table-bordered table-hover datatable-highlight" id="ctable">
+            <thead><tr><th>District ID</th><th>District Name</th><th>Division</th><th>Action</th></tr></thead>
+            <tbody>
+
+                @foreach (var item in Model.DistrictList)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DistrictID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DistrictName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DivisionName)
+                        </td>
+                        <td>
+                            <a class="discussion-comment btn" discussion-id="@item.DistrictKey" href="#">Edit</a> ||
+
+                            <a id="deleteDistrict" class="deleteDistrict btn" data-target="#basic" data-toggle="modal" data-path="@Url.Action("Delete", "MgtDistrict",new{ID=item.DistrictKey})">Delete</a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Add New District</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DistrictID, "District ID")
+                            @Html.HiddenFor(model => model.DistrictKey, new { id = "DistrictKey" })
+                            @Html.TextBoxFor(model => model.DistrictID, new { placeholder = " District ID", id = "DistrictID", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DistrictID, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DistrictName, "District Name")
+                            @Html.TextBoxFor(model => model.DistrictName, new { @required = "required", placeholder = " District Name", id = "DistrictName", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DistrictName, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DivisionKey, "Division")
+                            <div>
+                                <select name="DivisionKey" id="DivisionKey" placeholder="Select" class="select select-search form-control"></select>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.DivisionKey, "", new { @class = "text-danger" })
+                        </div>
+                    </form>
+                    <div class="form-group" id="msgSuccess"><h4 class="alert alert-danger">Data is successfully Saved on database.</h4></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                    <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Delete Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this?
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" type="button" class="btn btn-default">Cancel</button>
+                    <button id="btnContinueDelete" type="button" class="btn btn-info">Continue To Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
