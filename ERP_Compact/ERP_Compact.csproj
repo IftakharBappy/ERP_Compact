@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -198,8 +199,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MgtCompanyController.cs" />
     <Compile Include="Controllers\MgtDivisionController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
     <Compile Include="DAL\ManageGIS.cs" />
@@ -222,6 +225,7 @@
     <Compile Include="Models\Company.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CompanyViewModel.cs" />
     <Compile Include="Models\Customer.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -1293,9 +1297,14 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\ErrorLayout.cshtml" />
     <Content Include="Views\MgtDivision\Index.cshtml" />
+    <Content Include="Views\MgtCompany\Create.cshtml" />
+    <Content Include="Views\MgtCompany\Details.cshtml" />
+    <Content Include="Views\MgtCompany\Edit.cshtml" />
+    <Content Include="Views\MgtCompany\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\Utility\" />
   </ItemGroup>
   <ItemGroup>
