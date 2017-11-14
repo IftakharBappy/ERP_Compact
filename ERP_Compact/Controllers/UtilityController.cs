@@ -28,6 +28,45 @@ namespace ERP_Compact.Controllers
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return result;
         }
+        public ActionResult LoadAisle(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            AisleViewModel obj = new AisleViewModel();
+            Aisle m = db.Aisle.Find(SelectID);
+            obj.AisleKey = m.AisleKey;
+            obj.AisleID = m.AisleID;
+            obj.AisleName = m.AisleName;
+            obj.AisleLevel = m.AisleLevel;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
+        public ActionResult LoadAssetCategory(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            AssetCategoryViewModel obj = new AssetCategoryViewModel();
+            AssetCategory m = db.AssetCategory.Find(SelectID);
+            obj.CategoryKey = m.CategoryKey;
+            obj.CategoryID = m.CategoryID;
+            obj.CategoryName = m.CategoryName;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
+
+        public ActionResult LoadAssetSubCategory(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            AssetSubcategoryViewModel obj = new AssetSubcategoryViewModel();
+            AssetSubcategory m = db.AssetSubcategory.Find(SelectID);
+            obj.CategoryKey = m.CategoryKey;
+            obj.SubcategoryKey = m.SubcategoryKey;
+            obj.SubcategoryID = m.SubcategoryID;
+            obj.SubcategoryName = m.SubcategoryName;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
         public JsonResult GetDistrictsOfDivision (Guid divisionKey)
         {
             var res = db.District.Where(d => d.DivisionKey == divisionKey && d.IsDelete == false).Select( x=> new { x.DistrictKey, x.DistrictName }).ToList();
