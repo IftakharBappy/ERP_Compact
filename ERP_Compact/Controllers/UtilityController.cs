@@ -124,7 +124,18 @@ namespace ERP_Compact.Controllers
             return result;
         }
 
-
+        public ActionResult LoadItemCategory(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            ItemCategoryViewModel obj = new ItemCategoryViewModel();
+            ItemCategory m = db.ItemCategory.Find(SelectID);
+            obj.CategoryKey = m.CategoryKey;
+            obj.CategoryID = m.CategoryID;
+            obj.CategoryName = m.CategoryName;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
         public JsonResult GetDistrictsOfDivision (Guid divisionKey)
         {
             var res = db.District.Where(d => d.DivisionKey == divisionKey && d.IsDelete == false).Select( x=> new { x.DistrictKey, x.DistrictName }).ToList();
