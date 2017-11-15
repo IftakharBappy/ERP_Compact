@@ -107,6 +107,24 @@ namespace ERP_Compact.Controllers
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return result;
         }
+        public ActionResult LoadForms(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            FormsViewModel obj = new FormsViewModel();
+            Forms m = db.Forms.Find(SelectID);
+            obj.FormID = m.FormID;
+            obj.ModuleID = m.ModuleID;
+            obj.SubModuleID = m.SubModuleID;
+            obj.FormName = m.FormName;
+            obj.FormLevel = m.FormLevel;
+            obj.FormController = m.FormController;
+            obj.ViewName = m.ViewName;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
+
+
         public JsonResult GetDistrictsOfDivision (Guid divisionKey)
         {
             var res = db.District.Where(d => d.DivisionKey == divisionKey && d.IsDelete == false).Select( x=> new { x.DistrictKey, x.DistrictName }).ToList();

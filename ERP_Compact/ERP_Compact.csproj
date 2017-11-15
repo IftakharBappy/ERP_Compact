@@ -209,6 +209,7 @@
     <Compile Include="Controllers\MgtDesignationController.cs" />
     <Compile Include="Controllers\MgtDistrictController.cs" />
     <Compile Include="Controllers\MgtDivisionController.cs" />
+    <Compile Include="Controllers\MgtFormController.cs" />
     <Compile Include="Controllers\MgtStoreController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
     <Compile Include="DAL\ManageGIS.cs" />
@@ -271,6 +272,7 @@
     <Compile Include="Models\Forms.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FormsViewModel.cs" />
     <Compile Include="Models\GISclass.cs" />
     <Compile Include="Models\GlobalClass.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -1043,6 +1045,7 @@
     <Content Include="Scripts\AutoComplete\scDesignation.js" />
     <Content Include="Scripts\AutoComplete\scDistrict.js" />
     <Content Include="Scripts\AutoComplete\scDivision.js" />
+    <Content Include="Scripts\AutoComplete\scForm.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -1325,6 +1328,7 @@
     <Content Include="Views\MgtDepartment\Index.cshtml" />
     <Content Include="Views\MgtDesignation\Index.cshtml" />
     <Content Include="Views\MgtDistrict\Index.cshtml" />
+    <Content Include="Views\MgtForm\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
