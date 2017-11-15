@@ -1,0 +1,207 @@
+﻿@model ERP_Compact.Models.WarehouseViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h2>Create Warehouse</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+@using (Html.BeginForm("Create", "MgtWarehouse", FormMethod.Post, new { enctype = "multipart/form-data", id = "thisForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.WahouseID, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.WahouseID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WahouseID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WahouseName, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.WahouseName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WahouseName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WahouseAddress, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.WahouseAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WahouseAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WahousePhone, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.WahousePhone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WahousePhone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WahouseMobile, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.WahouseMobile, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WahouseMobile, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WahouseEmail, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.WahouseEmail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WahouseEmail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WahouseWebsite, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.WahouseWebsite, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WahouseWebsite, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WahouseFax, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.WahouseFax, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WahouseFax, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContactPersonName, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.ContactPersonName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ContactPersonName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContactPersonNo, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.ContactPersonNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ContactPersonNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Logo, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(model => model.Logo, new { @type = "file" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DivisionKey, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownList("DivisionKey", null, "Select", htmlAttributes: new { @class = "form-control", onchange = "changeDistrictDropDown()" })
+                @Html.ValidationMessageFor(model => model.DivisionKey, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DistrictKey, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownList("DistrictKey", null, htmlAttributes: new { @class = "form-control", onchange = "changeUpazillaDropDown()" })
+                @Html.ValidationMessageFor(model => model.DistrictKey, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UpazillaKey, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownList("UpazillaKey", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.UpazillaKey, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-2">
+                @Html.ActionLink("<< Company List", "Index", null, new { @class = "btn btn-primary" })
+            </div>
+            <div class="col-md-offset-6 col-md-2">
+                <input type="button" class="btn btn-info" value="Create" onclick="trySubmit()" />
+            </div>
+        </div>
+    </div>
+}
+    </div>
+</div>
+
+<script>
+
+function changeDistrictDropDown() {
+    var DivisionKey = $("#DivisionKey").val();
+    $("#DistrictKey").html("");
+    $("#UpazillaKey").html("");
+    if (DivisionKey == '') {
+        return;
+    }
+    $.ajax({
+        traditional: true,
+        type: "post",
+        dataType: "json",
+        contentType: "application/json",
+        url: "/Utility/GetDistrictsOfDivision/",
+        data: JSON.stringify({ divisionKey: DivisionKey }),
+        success: function (data) {
+            var res = "<option value=''>Select</option>";
+            for (var i = 0; i < data.length; i++) {
+                res = res + "<option value='" + data[i].DistrictKey + "' >" + data[i].DistrictName + "</option>";
+            }
+            $("#DistrictKey").html(res);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.log("Error on ajax call");
+        }
+    });
+}
+
+function changeUpazillaDropDown() {
+    var DistrictKey = $("#DistrictKey").val();
+    $("#UpazillaKey").html("");
+    if (DistrictKey == '') {
+        return;
+    }
+    $.ajax({
+        traditional: true,
+        type: "post",
+        dataType: "json",
+        contentType: "application/json",
+        url: "/Utility/GetUpazillasOfDistrict/",
+        data: JSON.stringify({ districtKey: DistrictKey }),
+        success: function (data) {
+            var res = "<option value=''>Select</option>";
+            for (var i = 0; i < data.length; i++) {
+                res = res + "<option value='" + data[i].UpazillaKey + "' >" + data[i].UpazillaName + "</option>";
+            }
+            $("#UpazillaKey").html(res);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.log("Error on ajax call");
+        }
+    });
+}
+
+function trySubmit() {
+    var logo = $("#Logo").val();
+    if (logo == '') {
+        alert("You must select a logo.");
+    } else {
+        $("#thisForm").submit();
+    }
+}
+</script>

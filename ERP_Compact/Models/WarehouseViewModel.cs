@@ -4,46 +4,43 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
+
 namespace ERP_Compact.Models
 {
-    public class CompanyViewModel
+    public class WarehouseViewModel
     {
-        public System.Guid CompanyKey { get; set; }
+        public System.Guid WarehouseKey { get; set; }
+
         [Display(Name = "ID")]
-        public string CompanyID { get; set; }
+        public string WahouseID { get; set; }
 
         [Display(Name = "Name")]
         [Required(ErrorMessage = "Name is required")]
-        public string CompanyName { get; set; }
+        public string WahouseName { get; set; }
 
         [Display(Name = "Address")]
-        [Required(ErrorMessage = "Address is required")]
-        public string CompanyAddress { get; set; }
+        public string WahouseAddress { get; set; }
 
         [Display(Name = "Phone No")]
-        public string CompanyPhone { get; set; }
+        public string WahousePhone { get; set; }
 
         [Display(Name = "Alternate Phone No")]
-        public string CompanyMobile { get; set; }
-
+        public string WahouseMobile { get; set; }
 
         [Display(Name = "Email")]
-        public string CompanyEmail { get; set; }
+        public string WahouseEmail { get; set; }
 
         [Display(Name = "Website")]
-        public string CompanyWebsite { get; set; }
+        public string WahouseWebsite { get; set; }
 
         [Display(Name = "Fax No")]
-        public string CompanyFax { get; set; }
+        public string WahouseFax { get; set; }
 
         [Display(Name = "Contact Person Name")]
         public string ContactPersonName { get; set; }
 
-
-        [Display(Name = "Contact Person contact No")]
+        [Display(Name = "Contact Person Contact No")]
         public string ContactPersonNo { get; set; }
-
-        
         public byte[] Logo { get; set; }
         public string LogoType { get; set; }
         public Nullable<bool> IsDelete { get; set; }
