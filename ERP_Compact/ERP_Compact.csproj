@@ -207,6 +207,7 @@
     <Compile Include="Controllers\MgtAssetSubcategoryController.cs" />
     <Compile Include="Controllers\MgtDepartmentController.cs" />
     <Compile Include="Controllers\MgtDesignationController.cs" />
+    <Compile Include="Controllers\MgtDistrictController.cs" />
     <Compile Include="Controllers\MgtDivisionController.cs" />
     <Compile Include="Controllers\MgtStoreController.cs" />
     <Compile Include="Controllers\MgtWarehouseController.cs" />
@@ -264,6 +265,7 @@
     <Compile Include="Models\District.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DistrictViewModel.cs" />
     <Compile Include="Models\Division.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -1041,6 +1043,7 @@
     <Content Include="Scripts\AutoComplete\scAssetSubCategory.js" />
     <Content Include="Scripts\AutoComplete\scDepartment.js" />
     <Content Include="Scripts\AutoComplete\scDesignation.js" />
+    <Content Include="Scripts\AutoComplete\scDistrict.js" />
     <Content Include="Scripts\AutoComplete\scDivision.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1323,6 +1326,7 @@
     <Content Include="Views\MgtAssetSubcategory\Index.cshtml" />
     <Content Include="Views\MgtDepartment\Index.cshtml" />
     <Content Include="Views\MgtDesignation\Index.cshtml" />
+    <Content Include="Views\MgtDistrict\Index.cshtml" />
     <Content Include="Views\MgtWarehouse\Create.cshtml" />
     <Content Include="Views\MgtWarehouse\Delete.cshtml" />
     <Content Include="Views\MgtWarehouse\Details.cshtml" />
