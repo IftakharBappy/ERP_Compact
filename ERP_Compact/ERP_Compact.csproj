@@ -209,6 +209,7 @@
     <Compile Include="Controllers\MgtDesignationController.cs" />
     <Compile Include="Controllers\MgtDivisionController.cs" />
     <Compile Include="Controllers\MgtStoreController.cs" />
+    <Compile Include="Controllers\MgtWarehouseController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
     <Compile Include="DAL\ManageGIS.cs" />
     <Compile Include="Global.asax.cs">
@@ -337,6 +338,7 @@
     <Compile Include="Models\Warehouse.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WarehouseViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1321,6 +1323,11 @@
     <Content Include="Views\MgtAssetSubcategory\Index.cshtml" />
     <Content Include="Views\MgtDepartment\Index.cshtml" />
     <Content Include="Views\MgtDesignation\Index.cshtml" />
+    <Content Include="Views\MgtWarehouse\Create.cshtml" />
+    <Content Include="Views\MgtWarehouse\Delete.cshtml" />
+    <Content Include="Views\MgtWarehouse\Details.cshtml" />
+    <Content Include="Views\MgtWarehouse\Edit.cshtml" />
+    <Content Include="Views\MgtWarehouse\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
