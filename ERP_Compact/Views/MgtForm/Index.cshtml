@@ -30,7 +30,14 @@
                     $('#SubModuleID').val(data["SubModuleID"]);
                 });
 
-            });
+        });
+
+        $(".digit").keypress(function (e) {
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                $("#errormsg").html("Digits Only").show().fadeOut("slow");
+                return false;
+            }
+        });
     });
 
     function changeSubModuleDropDown() {
@@ -134,8 +141,9 @@
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.FormLevel, "Form Level")
-                            @Html.TextBoxFor(model => model.FormLevel, new { @required = "required", placeholder = "Form Level", id = "FormLevel", @class = "form-control" })
+                            @Html.TextBoxFor(model => model.FormLevel, new { @required = "required", placeholder = "Form Level", id = "FormLevel", @class = "digit form-control" })
                             @Html.ValidationMessageFor(model => model.FormLevel, "", new { @class = "text-danger" })
+                            <span id="errormsg" style="color:orangered;text-decoration:solid"></span>
 
                         </div>
                         <div class="form-group">

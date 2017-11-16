@@ -40,10 +40,15 @@
                     $('#AisleName').val(data["AisleName"]);
                     $('#AisleLevel').val(data["AisleLevel"]);
 
-
                 });
 
+            });
 
+            $(".digit").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    $("#errormsg").html("Digits Only").show().fadeOut("slow");
+                    return false;
+                }
             });
     });
 
@@ -117,8 +122,9 @@
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.AisleLevel, "Aisle Level")
-                            @Html.TextBoxFor(model => model.AisleLevel, new { @required = "required", placeholder = " Aisle Level ", id = "AisleLevel", @class = "form-control" })
+                            @Html.TextBoxFor(model => model.AisleLevel, new { @required = "required", placeholder = " Aisle Level ", id = "AisleLevel", @class = "digit form-control" })
                             @Html.ValidationMessageFor(model => model.AisleLevel, "", new { @class = "text-danger" })
+                            <span id="errormsg" style="color:orangered;text-decoration:solid"></span>
 
                         </div>
 
