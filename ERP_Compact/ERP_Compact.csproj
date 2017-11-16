@@ -211,6 +211,7 @@
     <Compile Include="Controllers\MgtDivisionController.cs" />
     <Compile Include="Controllers\MgtFormController.cs" />
     <Compile Include="Controllers\MgtItemCategoryController.cs" />
+    <Compile Include="Controllers\MgtItemSubcategoryController.cs" />
     <Compile Include="Controllers\MgtStoreController.cs" />
     <Compile Include="Controllers\MgtWarehouseController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
@@ -291,6 +292,7 @@
     <Compile Include="Models\ItemSubcategory.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ItemSubCategoryViewModel.cs" />
     <Compile Include="Models\ItemType.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -1051,6 +1053,7 @@
     <Content Include="Scripts\AutoComplete\scDivision.js" />
     <Content Include="Scripts\AutoComplete\scForm.js" />
     <Content Include="Scripts\AutoComplete\scItemCategory.js" />
+    <Content Include="Scripts\AutoComplete\scItemSubCategory.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -1340,6 +1343,7 @@
     <Content Include="Views\MgtWarehouse\Index.cshtml" />
     <Content Include="Views\MgtForm\Index.cshtml" />
     <Content Include="Views\MgtItemCategory\Index.cshtml" />
+    <Content Include="Views\MgtItemSubcategory\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
