@@ -200,6 +200,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\MgtCustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MgtCompanyController.cs" />
@@ -239,6 +240,7 @@
     <Compile Include="Models\Customer.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\dbModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1332,6 +1334,10 @@
     <Content Include="Views\MgtWarehouse\Details.cshtml" />
     <Content Include="Views\MgtWarehouse\Edit.cshtml" />
     <Content Include="Views\MgtWarehouse\Index.cshtml" />
+    <Content Include="Views\MgtCustomer\Index.cshtml" />
+    <Content Include="Views\MgtCustomer\Create.cshtml" />
+    <Content Include="Views\MgtCustomer\Edit.cshtml" />
+    <Content Include="Views\MgtCustomer\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
