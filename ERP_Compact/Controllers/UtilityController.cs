@@ -107,6 +107,73 @@ namespace ERP_Compact.Controllers
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return result;
         }
+        public ActionResult LoadForms(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            FormsViewModel obj = new FormsViewModel();
+            Forms m = db.Forms.Find(SelectID);
+            obj.FormID = m.FormID;
+            obj.ModuleID = m.ModuleID;
+            obj.SubModuleID = m.SubModuleID;
+            obj.FormName = m.FormName;
+            obj.FormLevel = m.FormLevel;
+            obj.FormController = m.FormController;
+            obj.ViewName = m.ViewName;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
+
+        public ActionResult LoadItemCategory(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            ItemCategoryViewModel obj = new ItemCategoryViewModel();
+            ItemCategory m = db.ItemCategory.Find(SelectID);
+            obj.CategoryKey = m.CategoryKey;
+            obj.CategoryID = m.CategoryID;
+            obj.CategoryName = m.CategoryName;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
+        public ActionResult LoadItemSubCategory(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            ItemSubCategoryViewModel obj = new ItemSubCategoryViewModel();
+            ItemSubcategory m = db.ItemSubcategory.Find(SelectID);
+            obj.CategoryKey = m.CategoryKey;
+            obj.SubcategoryKey = m.SubcategoryKey;
+            obj.SubcategoryID = m.SubcategoryID;
+            obj.SubcategoryName = m.SubcategoryName;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
+        public ActionResult LoadItemType(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            ItemTypeViewModel obj = new ItemTypeViewModel();
+            ItemType m = db.ItemType.Find(SelectID);
+            obj.TypeKey = m.TypeKey;
+            obj.TypeID = m.TypeID;
+            obj.TypeName = m.TypeName;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
+
+        public ActionResult LoadModule(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            ModulesViewModel obj = new ModulesViewModel();
+            Modules m = db.Modules.Find(SelectID);
+            obj.ModuleID = m.ModuleID;
+            obj.ModuleName = m.ModuleName;
+            obj.ModuleLevel = m.ModuleLevel;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
         public JsonResult GetDistrictsOfDivision (Guid divisionKey)
         {
             var res = db.District.Where(d => d.DivisionKey == divisionKey && d.IsDelete == false).Select( x=> new { x.DistrictKey, x.DistrictName }).ToList();

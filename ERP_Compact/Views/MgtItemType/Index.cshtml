@@ -1,6 +1,6 @@
-﻿@model ERP_Compact.Models.DesignationViewModel
+﻿@model ERP_Compact.Models.ItemTypeViewModel
 @{
-    ViewBag.Title = "Designation";
+    ViewBag.Title = "Item Type";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,7 +13,7 @@
             $('#ctable').dataTable();
             var path_to_delete;
 
-            $(".deleteAssetCat").click(function (e) {
+            $(".deleteItemCategory").click(function (e) {
                 path_to_delete = $(this).data('path');
             });
             $('#btnContinueDelete').click(function () {
@@ -22,33 +22,27 @@
         });
 
 </script>
-<script src="~/Scripts/AutoComplete/scDesignation.js"></script>
+<script src="~/Scripts/AutoComplete/scItemType.js"></script>
 <script type="text/javascript">
         $(document).ready(function () {
             $('#msgSuccess').hide();
 
             $(".discussion-comment").click(function (event) {
-                $('#DesignationKey').val($(this).attr("discussion-id"));
+                $('#TypeKey').val($(this).attr("discussion-id"));
                 $('#myModal').modal('show');
                 $('#btnUpdate').show();
                 $('#btnAdd').hide();
-                var w = "#DesignationKey";
-                var url = '@Url.Content("~/")' + "Utility/LoadDesignation";
+                var w = "#TypeKey";
+                var url = '@Url.Content("~/")' + "Utility/LoadItemType";
                 $.getJSON(url, { SelectID: $(w).val() }, function (data) {
 
-                    $('#DesignationtID').val(data["DesignationtID"]);
-                    $('#DesignationName').val(data["DesignationName"]);
-                    $('#DesignationLevel').val(data["DesignationLevel"]);
+                    $('#TypeID').val(data["TypeID"]);
+                    $('#TypeName').val(data["TypeName"]);
+
 
                 });
 
-            });
 
-            $(".digit").keypress(function (e) {
-                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-                    $("#errormsg").html("Digits Only").show().fadeOut("slow");
-                    return false;
-                }
             });
     });
 
@@ -60,35 +54,32 @@
     <div class="panel-heading">
 
         <h2>
-            List of Designation
+            List of Item Type
         </h2>
 
     </div>
     <div class="panel-body">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Designation</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Item Type</button>
     </div>
     <div class="panel-body">
 
         <table class="table table-bordered table-hover datatable-highlight" id="ctable">
-            <thead><tr><th>Designation ID</th><th>Designation Name</th><th>Designation Level</th><th>Action</th></tr></thead>
+            <thead><tr><th>Category ID</th><th>Category Name</th><th>Action</th></tr></thead>
             <tbody>
 
-                @foreach (var item in Model.DesignationList)
+                @foreach (var item in Model.ItemTypeList)
             {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.DesignationtID)
+                            @Html.DisplayFor(modelItem => item.TypeID)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.DesignationName)
+                            @Html.DisplayFor(modelItem => item.TypeName)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.DesignationLevel)
-                        </td>
-                        <td>
-                            <a class="discussion-comment btn" discussion-id="@item.DesignationKey" href="#">Edit</a> ||
+                            <a class="discussion-comment btn" discussion-id="@item.TypeKey" href="#">Edit</a> ||
 
-                            <a id="deleteAisle" class="deleteAssetCat btn" data-target="#basic" data-toggle="modal" data-path="@Url.Action("Delete", "MgtDesignation",new{ID=item.DesignationKey})">Delete</a>
+                            <a id="deleteItemCategory" class="deleteItemCategory btn" data-target="#basic" data-toggle="modal" data-path="@Url.Action("Delete", "MgtItemType",new{ID=item.TypeKey})">Delete</a>
 
                         </td>
                     </tr>
@@ -102,31 +93,25 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h4 class="modal-title" id="myModalLabel">Add New Designation</h4>
+                    <h4 class="modal-title" id="myModalLabel">Add New Item Type</h4>
                 </div>
                 <div class="modal-body">
                     <form>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.DesignationtID, "Designationt ID")
-                            @Html.HiddenFor(model => model.DesignationKey, new { id = "DesignationKey" })
-                            @Html.TextBoxFor(model => model.DesignationtID, new { placeholder = " Designationt ID", id = "DesignationtID", @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.DesignationtID, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.TypeID, "Type ID")
+                            @Html.HiddenFor(model => model.TypeKey, new { id = "TypeKey" })
+                            @Html.TextBoxFor(model => model.TypeID, new { placeholder = " Type ID", id = "TypeID", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TypeID, "", new { @class = "text-danger" })
 
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.DesignationName, "Designation Name")
-                            @Html.TextBoxFor(model => model.DesignationName, new { @required = "required", placeholder = " Designation Name", id = "DesignationName", @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.DesignationName, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.TypeName, "Type Name")
+                            @Html.TextBoxFor(model => model.TypeName, new { @required = "required", placeholder = " Type Name ", id = "TypeName", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TypeName, "", new { @class = "text-danger" })
 
                         </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.DesignationLevel, "Designation Level")
-                            @Html.TextBoxFor(model => model.DesignationLevel, new { @required = "required", placeholder = " Designation Level", id = "DesignationLevel", @class = "digit form-control" })
-                            @Html.ValidationMessageFor(model => model.DesignationLevel, "", new { @class = "text-danger" })
-                            <span id="errormsg" style="color:orangered;text-decoration:solid"></span>
 
-                        </div>
                     </form>
                     <div class="form-group" id="msgSuccess"><h4 class="alert alert-danger">Data is successfully Saved on database.</h4></div>
                 </div>
@@ -157,6 +142,4 @@
     </div>
 
 </div>
-
-
 

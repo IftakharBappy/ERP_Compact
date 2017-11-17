@@ -210,6 +210,11 @@
     <Compile Include="Controllers\MgtDesignationController.cs" />
     <Compile Include="Controllers\MgtDistrictController.cs" />
     <Compile Include="Controllers\MgtDivisionController.cs" />
+    <Compile Include="Controllers\MgtFormController.cs" />
+    <Compile Include="Controllers\MgtItemCategoryController.cs" />
+    <Compile Include="Controllers\MgtItemSubcategoryController.cs" />
+    <Compile Include="Controllers\MgtItemTypeController.cs" />
+    <Compile Include="Controllers\MgtModulesController.cs" />
     <Compile Include="Controllers\MgtStoreController.cs" />
     <Compile Include="Controllers\MgtWarehouseController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
@@ -274,6 +279,7 @@
     <Compile Include="Models\Forms.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FormsViewModel.cs" />
     <Compile Include="Models\GISclass.cs" />
     <Compile Include="Models\GlobalClass.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -286,12 +292,15 @@
     <Compile Include="Models\ItemCategory.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ItemCategoryViewModel.cs" />
     <Compile Include="Models\ItemSubcategory.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ItemSubCategoryViewModel.cs" />
     <Compile Include="Models\ItemType.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ItemTypeViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Manufacturer.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
@@ -299,6 +308,7 @@
     <Compile Include="Models\Modules.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModulesViewModel.cs" />
     <Compile Include="Models\ProductionProcessSetup.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -1047,6 +1057,11 @@
     <Content Include="Scripts\AutoComplete\scDesignation.js" />
     <Content Include="Scripts\AutoComplete\scDistrict.js" />
     <Content Include="Scripts\AutoComplete\scDivision.js" />
+    <Content Include="Scripts\AutoComplete\scForm.js" />
+    <Content Include="Scripts\AutoComplete\scItemCategory.js" />
+    <Content Include="Scripts\AutoComplete\scItemSubCategory.js" />
+    <Content Include="Scripts\AutoComplete\scItemType.js" />
+    <Content Include="Scripts\AutoComplete\scModule.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -1338,6 +1353,11 @@
     <Content Include="Views\MgtCustomer\Create.cshtml" />
     <Content Include="Views\MgtCustomer\Edit.cshtml" />
     <Content Include="Views\MgtCustomer\Details.cshtml" />
+    <Content Include="Views\MgtForm\Index.cshtml" />
+    <Content Include="Views\MgtItemCategory\Index.cshtml" />
+    <Content Include="Views\MgtItemSubcategory\Index.cshtml" />
+    <Content Include="Views\MgtItemType\Index.cshtml" />
+    <Content Include="Views\MgtModules\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

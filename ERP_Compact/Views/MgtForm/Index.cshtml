@@ -1,0 +1,196 @@
+﻿@model ERP_Compact.Models.FormsViewModel
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.dataTables.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.js"></script>
+
+<script src="~/Scripts/AutoComplete/scForm.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#msgSuccess').hide();
+        $(".discussion-comment").click(function (event) {
+            $('#FormID').val($(this).attr("discussion-id"));
+            $('#myModal').modal('show');
+            $('#btnUpdate').show();
+            $('#btnAdd').hide();
+            var w = "#FormID";
+            var url = '@Url.Content("~/")' + "Utility/LoadForms";
+                $.getJSON(url, { SelectID: $(w).val() }, function (data) {
+
+                    $('#FormID').val(data["FormID"]);
+                    $('#ModuleID').val(data["ModuleID"]);
+                    $('#FormName').val(data["FormName"]);
+                    $('#FormLevel').val(data["FormLevel"]);
+                    $('#FormController').val(data["FormController"]);
+                    $('#ViewName').val(data["ViewName"]);
+                    $('#SubModuleID').val(data["SubModuleID"]);
+                });
+
+        });
+
+        $(".digit").keypress(function (e) {
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                $("#errormsg").html("Digits Only").show().fadeOut("slow");
+                return false;
+            }
+        });
+    });
+
+    function changeSubModuleDropDown() {
+        var ModuleID = $("#ModuleID").val();
+        $("#SubModuleID").html("");
+        if (ModuleID == '') {
+            return;
+        }
+        $.ajax({
+            traditional: true,
+            type: "post",
+            dataType: "json",
+            contentType: "application/json",
+            url: "/MgtForm/ModuleDropDownToCreate/",
+            data: JSON.stringify({ id: ModuleID }),
+            success: function (data) {
+                var res = "<option value=''>Select</option>";
+                for (var i = 0; i < data.length; i++) {
+                    res = res + "<option value='" + data[i].SubModuleID + "' >" + data[i].SubModuleName + "</option>";
+                }
+                $("#SubModuleID").html(res);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Error on ajax call");
+            }
+        });
+    }
+
+</script>
+
+
+
+<div class="panel panel-flat">
+    <div class="panel-heading">
+
+        <h2>
+            List of Forms
+        </h2>
+
+    </div>
+    <div class="panel-body">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Form</button>
+    </div>
+    <div class="panel-body">
+
+        <table class="table table-bordered table-hover datatable-highlight" id="ctable">
+            <thead><tr><th>Module</th><th>Form Name</th><th>Form Level</th><th>Controller Name</th><th>View Name</th><th>Sub-Module</th><th>Action</th></tr></thead>
+            <tbody>
+
+                @foreach (var item in Model.FormsViewModelList)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ModuleName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FormName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FormLevel)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FormController)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ViewName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SubModuleName)
+                        </td>
+                        <td>
+                            <a class="discussion-comment btn" discussion-id="@item.FormID" href="#">Edit</a> ||
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Add New Form</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ModuleID, "Module")
+                                @Html.DropDownList("ModuleID", null, "Select", htmlAttributes: new { @class = "form-control", onchange = "changeSubModuleDropDown()" })
+                                @Html.ValidationMessageFor(model => model.ModuleID, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FormName, "Form Name")
+                            @Html.HiddenFor(model => model.FormID, new { id = "FormID" })
+                            @Html.TextBoxFor(model => model.FormName, new { placeholder = "Form Name", id = "FormName", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FormName, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FormLevel, "Form Level")
+                            @Html.TextBoxFor(model => model.FormLevel, new { @required = "required", placeholder = "Form Level", id = "FormLevel", @class = "digit form-control" })
+                            @Html.ValidationMessageFor(model => model.FormLevel, "", new { @class = "text-danger" })
+                            <span id="errormsg" style="color:orangered;text-decoration:solid"></span>
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FormController, "Controller Name")
+                            @Html.TextBoxFor(model => model.FormController, new { @required = "required", placeholder = "Controller Name", id = "FormController", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FormController, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ViewName, "View Name")
+                            @Html.TextBoxFor(model => model.ViewName, new { @required = "required", placeholder = "View Name", id = "ViewName", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ViewName, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SubModuleID, "Sub Module")
+                            @Html.DropDownList("SubModuleID", null, "Select", htmlAttributes: new { placeholder = "Select", @class = "select select-search form-control"})
+                            @Html.ValidationMessageFor(model => model.SubModuleID, "", new { @class = "text-danger" })
+                        </div>
+                    </form>
+                    <div class="form-group" id="msgSuccess"><h4 class="alert alert-danger">Data is successfully Saved on database.</h4></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                    <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Delete Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this?
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" type="button" class="btn btn-default">Cancel</button>
+                    <button id="btnContinueDelete" type="button" class="btn btn-info">Continue To Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
