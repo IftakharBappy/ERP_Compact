@@ -214,6 +214,7 @@
     <Compile Include="Controllers\MgtItemCategoryController.cs" />
     <Compile Include="Controllers\MgtItemSubcategoryController.cs" />
     <Compile Include="Controllers\MgtItemTypeController.cs" />
+    <Compile Include="Controllers\MgtManufacturerController.cs" />
     <Compile Include="Controllers\MgtModulesController.cs" />
     <Compile Include="Controllers\MgtProductionProcessSetupController.cs" />
     <Compile Include="Controllers\MgtStoreRawsController.cs" />
@@ -307,6 +308,7 @@
     <Compile Include="Models\Manufacturer.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ManufacturerViewModel.cs" />
     <Compile Include="Models\Modules.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -1364,6 +1366,10 @@
     <Content Include="Views\MgtItemSubcategory\Index.cshtml" />
     <Content Include="Views\MgtItemType\Index.cshtml" />
     <Content Include="Views\MgtModules\Index.cshtml" />
+    <Content Include="Views\MgtManufacturer\Index.cshtml" />
+    <Content Include="Views\MgtManufacturer\Create.cshtml" />
+    <Content Include="Views\MgtManufacturer\Edit.cshtml" />
+    <Content Include="Views\MgtManufacturer\Details.cshtml" />
     <Content Include="Views\MgtProductionProcessSetup\Index.cshtml" />
     <Content Include="Views\MgtStoreRaws\Index.cshtml" />
   </ItemGroup>
