@@ -216,6 +216,7 @@
     <Compile Include="Controllers\MgtItemTypeController.cs" />
     <Compile Include="Controllers\MgtModulesController.cs" />
     <Compile Include="Controllers\MgtProductionProcessSetupController.cs" />
+    <Compile Include="Controllers\MgtStoreRawsController.cs" />
     <Compile Include="Controllers\MgtStoreController.cs" />
     <Compile Include="Controllers\MgtWarehouseController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
@@ -320,6 +321,7 @@
     <Compile Include="Models\Shelf.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StoreRowsViewModel.cs" />
     <Compile Include="Models\SubModule.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -1065,6 +1067,7 @@
     <Content Include="Scripts\AutoComplete\scItemType.js" />
     <Content Include="Scripts\AutoComplete\scModule.js" />
     <Content Include="Scripts\AutoComplete\scProductionProcessSetup.js" />
+    <Content Include="Scripts\AutoComplete\scStoreRows.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -1362,10 +1365,12 @@
     <Content Include="Views\MgtItemType\Index.cshtml" />
     <Content Include="Views\MgtModules\Index.cshtml" />
     <Content Include="Views\MgtProductionProcessSetup\Index.cshtml" />
+    <Content Include="Views\MgtStoreRaws\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\MgtSotreRaws\" />
     <Folder Include="Views\Utility\" />
   </ItemGroup>
   <ItemGroup>

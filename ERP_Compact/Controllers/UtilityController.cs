@@ -188,6 +188,19 @@ namespace ERP_Compact.Controllers
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return result;
         }
+        public ActionResult LoadStoreRows(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            StoreRowsViewModel obj = new StoreRowsViewModel();
+            Row_Store m = db.Row_Store.Find(SelectID);
+            obj.RowKey = m.RowKey;
+            obj.RowID = m.RowID;
+            obj.RowName = m.RowName;
+            obj.RowLevel = m.RowLevel;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
         public JsonResult GetDistrictsOfDivision (Guid divisionKey)
         {
             var res = db.District.Where(d => d.DivisionKey == divisionKey && d.IsDelete == false).Select( x=> new { x.DistrictKey, x.DistrictName }).ToList();
