@@ -1,0 +1,169 @@
+﻿@model ERP_Compact.Models.ProductionProcessSetupViewModel
+@{
+    ViewBag.Title = "Production Process Setup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.dataTables.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.js"></script>
+<script type="text/javascript">
+        $(function () {
+
+            $('#ctable').dataTable();
+            var path_to_delete;
+
+            $(".deleteProductionProcess").click(function (e) {
+                path_to_delete = $(this).data('path');
+            });
+            $('#btnContinueDelete').click(function () {
+                window.location = path_to_delete;
+            });
+        });
+
+</script>
+<script src="~/Scripts/AutoComplete/scProductionProcessSetup.js"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#msgSuccess').hide();
+
+            $(".discussion-comment").click(function (event) {
+                $('#ProcessKey').val($(this).attr("discussion-id"));
+                $('#myModal').modal('show');
+                $('#btnUpdate').show();
+                $('#btnAdd').hide();
+                var w = "#ProcessKey";
+                var url = '@Url.Content("~/")' + "Utility/LoadProductionProcessSetup";
+                $.getJSON(url, { SelectID: $(w).val() }, function (data) {
+
+                    $('#ProcessID').val(data["ProcessID"]);
+                    $('#ProcessName').val(data["ProcessName"]);
+                    $('#ProcessLevel').val(data["ProcessLevel"]);
+                    $('#Description').val(data["Description"]);
+                });
+
+            });
+
+            $(".digit").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    $("#errormsg").html("Digits Only").show().fadeOut("slow");
+                    return false;
+                }
+            });
+    });
+
+</script>
+
+
+
+<div class="panel panel-flat">
+    <div class="panel-heading">
+
+        <h2>
+            List of Production Process Setup
+        </h2>
+
+    </div>
+    <div class="panel-body">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Production Process Setup</button>
+    </div>
+    <div class="panel-body">
+
+        <table class="table table-bordered table-hover datatable-highlight" id="ctable">
+            <thead><tr><th>Process ID</th><th>Process Name</th><th>Process Level</th><th>Description</th><th>Action</th></tr></thead>
+            <tbody>
+
+                @foreach (var item in Model.ProductionProcessSetupList)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProcessID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProcessName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProcessLevel)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            <a class="discussion-comment btn" discussion-id="@item.ProcessKey" href="#">Edit</a> ||
+
+                            <a id="deleteProductionProcess" class="deleteProductionProcess btn" data-target="#basic" data-toggle="modal" data-path="@Url.Action("Delete", "MgtProductionProcessSetup",new{ID=item.ProcessKey})">Delete</a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Add New Production Process Setup</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ProcessID, "Process ID")
+                            @Html.HiddenFor(model => model.ProcessKey, new { id = "ProcessKey" })
+                            @Html.TextBoxFor(model => model.ProcessID, new { placeholder = " Process ID", id = "ProcessID", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ProcessID, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ProcessName, "Process Name")
+                            @Html.TextBoxFor(model => model.ProcessName, new { @required = "required", placeholder = " Process Name", id = "ProcessName", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ProcessName, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ProcessLevel, "Process Level")
+                            @Html.TextBoxFor(model => model.ProcessLevel, new { @required = "required", placeholder = " Process Level ", id = "ProcessLevel", @class = "digit form-control" })
+                            @Html.ValidationMessageFor(model => model.ProcessLevel, "", new { @class = "text-danger" })
+                            <span id="errormsg" style="color:orangered;text-decoration:solid"></span>
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Description, "Description")
+                            @Html.TextAreaFor(model => model.Description, new { @required = "required", placeholder = " Description", id = "Description", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+                        </div>
+                    </form>
+                    <div class="form-group" id="msgSuccess"><h4 class="alert alert-danger">Data is successfully Saved on database.</h4></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                    <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Delete Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this?
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" type="button" class="btn btn-default">Cancel</button>
+                    <button id="btnContinueDelete" type="button" class="btn btn-info">Continue To Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

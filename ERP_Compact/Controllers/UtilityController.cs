@@ -174,6 +174,20 @@ namespace ERP_Compact.Controllers
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return result;
         }
+        public ActionResult LoadProductionProcessSetup(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            ProductionProcessSetupViewModel obj = new ProductionProcessSetupViewModel();
+            ProductionProcessSetup m = db.ProductionProcessSetup.Find(SelectID);
+            obj.ProcessKey = m.ProcessKey;
+            obj.ProcessID = m.ProcessID;
+            obj.ProcessName = m.ProcessName;
+            obj.ProcessLevel = m.ProcessLevel;
+            obj.Description = m.Description;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
         public JsonResult GetDistrictsOfDivision (Guid divisionKey)
         {
             var res = db.District.Where(d => d.DivisionKey == divisionKey && d.IsDelete == false).Select( x=> new { x.DistrictKey, x.DistrictName }).ToList();
