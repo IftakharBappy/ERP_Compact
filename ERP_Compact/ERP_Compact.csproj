@@ -220,6 +220,7 @@
     <Compile Include="Controllers\MgtStoreRawsController.cs" />
     <Compile Include="Controllers\MgtStoreController.cs" />
     <Compile Include="Controllers\MgtStoreShelfController.cs" />
+    <Compile Include="Controllers\MgtSubModuleController.cs" />
     <Compile Include="Controllers\MgtWarehouseController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
     <Compile Include="DAL\ManageGIS.cs" />
@@ -329,6 +330,7 @@
     <Compile Include="Models\SubModule.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SubModuleViewModel.cs" />
     <Compile Include="Models\Supplier.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -1073,6 +1075,7 @@
     <Content Include="Scripts\AutoComplete\scProductionProcessSetup.js" />
     <Content Include="Scripts\AutoComplete\scStoreRows.js" />
     <Content Include="Scripts\AutoComplete\scStoreShelf.js" />
+    <Content Include="Scripts\AutoComplete\scSubModule.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -1376,6 +1379,7 @@
     <Content Include="Views\MgtProductionProcessSetup\Index.cshtml" />
     <Content Include="Views\MgtStoreRaws\Index.cshtml" />
     <Content Include="Views\MgtStoreShelf\Index.cshtml" />
+    <Content Include="Views\MgtSubModule\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
