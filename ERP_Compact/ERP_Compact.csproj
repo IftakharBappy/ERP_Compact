@@ -200,6 +200,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\MgtAssetController.cs" />
     <Compile Include="Controllers\MgtCustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Controllers\MgtDivisionController.cs" />
     <Compile Include="Controllers\MgtFormController.cs" />
     <Compile Include="Controllers\MgtItemCategoryController.cs" />
+    <Compile Include="Controllers\MgtItemController.cs" />
     <Compile Include="Controllers\MgtItemSubcategoryController.cs" />
     <Compile Include="Controllers\MgtItemTypeController.cs" />
     <Compile Include="Controllers\MgtManufacturerController.cs" />
@@ -245,6 +247,7 @@
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AssetSubcategoryViewModel.cs" />
+    <Compile Include="Models\AssetViewModel.cs" />
     <Compile Include="Models\Company.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -308,6 +311,7 @@
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ItemTypeViewModel.cs" />
+    <Compile Include="Models\ItemViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Manufacturer.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
@@ -1383,6 +1387,14 @@
     <Content Include="Views\MgtManufacturer\Edit.cshtml" />
     <Content Include="Views\MgtManufacturer\Details.cshtml" />
     <Content Include="Views\MgtProductionProcessSetup\Index.cshtml" />
+    <Content Include="Views\MgtAsset\Index.cshtml" />
+    <Content Include="Views\MgtAsset\Create.cshtml" />
+    <Content Include="Views\MgtAsset\Edit.cshtml" />
+    <Content Include="Views\MgtAsset\Details.cshtml" />
+    <Content Include="Views\MgtItem\Index.cshtml" />
+    <Content Include="Views\MgtItem\Create.cshtml" />
+    <Content Include="Views\MgtItem\Edit.cshtml" />
+    <Content Include="Views\MgtItem\Details.cshtml" />
     <Content Include="Views\MgtStoreRaws\Index.cshtml" />
     <Content Include="Views\MgtStoreShelf\Index.cshtml" />
     <Content Include="Views\MgtSubModule\Index.cshtml" />

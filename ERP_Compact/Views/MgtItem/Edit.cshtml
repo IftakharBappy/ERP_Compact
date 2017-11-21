@@ -1,0 +1,229 @@
+﻿@model ERP_Compact.Models.ItemViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row" id="messageDiv">
+    <div class="col-lg-12">
+        <p class='text-center @TempData["message_background"]'><b>@TempData["message_text"]</b></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h2>Edit Customer</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        @using (Html.BeginForm("Edit", "MgtUnit", FormMethod.Post, new { enctype = "multipart/form-data", id = "thisForm" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.HiddenFor(model => model.ItemKey)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ItemID, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.ItemID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ItemID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ItemName, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.ItemName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ItemName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProductID, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.ProductID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ProductID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UnitKey, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DropDownList("UnitKey", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.UnitKey, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Unitsize, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Unitsize, new { @class = "form-control", type = "number" })
+                        @Html.ValidationMessageFor(model => model.Unitsize, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CategoryKey, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DropDownList("CategoryKey", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CategoryKey, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SubcategoryKey, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DropDownList("SubcategoryKey", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SubcategoryKey, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ModelNo, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.ModelNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ModelNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ItemColor, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.ItemColor, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ItemColor, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ReorderLevel, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.ReorderLevel, new { @class = "form-control", type = "number" })
+                        @Html.ValidationMessageFor(model => model.ReorderLevel, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Current logo", new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @{
+                            var base64 = Convert.ToBase64String(Model.Logo);
+                            var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+                            <img src='@imgSrc' style="max-height:200px;max-width:200px;border-radius: 25px;" class="col-md-8 col-md-offset-2" />
+                        }
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Logo, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Logo, new { @type = "file", @value = base64 })
+                        <input id="KeepOldLogo" type="checkbox" value="true" name="KeepOldLogo" />
+                        <input type="hidden" value="false" name="KeepOldLogo" />&nbsp;Keep the current logo
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-2">
+                        @Html.ActionLink("<< Customer List", "Index", null, new { @class = "btn btn-primary" })
+                    </div>
+                    <div class="col-md-offset-6 col-md-2">
+                        <input type="button" class="btn btn-info" value="Update" onclick="trySubmit()" />
+                    </div>
+
+                </div>
+            </div>
+                            }
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        showMessageDiv();
+    });
+
+    //# show hide status messsage on the top
+    function showMessageDiv() {
+        $("#messageDiv").hide();
+        var message = '@TempData["message_text"]';
+        if (message != '') {
+            $("#messageDiv").show();
+            setTimeout(hideMessageDiv, 2000);
+        }
+    }
+    function hideMessageDiv() {
+        $("#messageDiv").hide(1000);
+    }
+
+    function changeDistrictDropDown() {
+        var DivisionKey = $("#DivisionKey").val();
+        $("#DistrictKey").html("");
+        $("#UpazillaKey").html("");
+        if (DivisionKey == '') {
+            return;
+        }
+        $.ajax({
+            traditional: true,
+            type: "post",
+            dataType: "json",
+            contentType: "application/json",
+            url: "/Utility/GetDistrictsOfDivision/",
+            data: JSON.stringify({ divisionKey: DivisionKey }),
+            success: function (data) {
+                var res = "<option value=''>Select</option>";
+                for (var i = 0; i < data.length; i++) {
+                    res = res + "<option value='" + data[i].DistrictKey + "' >" + data[i].DistrictName + "</option>";
+                }
+                $("#DistrictKey").html(res);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Error on ajax call");
+            }
+        });
+    }
+
+    function changeUpazillaDropDown() {
+        var DistrictKey = $("#DistrictKey").val();
+        $("#UpazillaKey").html("");
+        if (DistrictKey == '') {
+            return;
+        }
+        $.ajax({
+            traditional: true,
+            type: "post",
+            dataType: "json",
+            contentType: "application/json",
+            url: "/Utility/GetUpazillasOfDistrict/",
+            data: JSON.stringify({ districtKey: DistrictKey }),
+            success: function (data) {
+                var res = "<option value=''>Select</option>";
+                for (var i = 0; i < data.length; i++) {
+                    res = res + "<option value='" + data[i].UpazillaKey + "' >" + data[i].UpazillaName + "</option>";
+                }
+                $("#UpazillaKey").html(res);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Error on ajax call");
+            }
+        });
+    }
+
+    function trySubmit() {
+        var logo = $("#Logo").val();
+        var KeepOldLogo = $("#KeepOldLogo").is(":checked");
+
+        if (logo == '' && KeepOldLogo == false) {
+            alert("You must select a logo or check the box to keep the old logo.");
+        } else {
+            $("#thisForm").submit();
+        }
+    }
+</script>
+
+
