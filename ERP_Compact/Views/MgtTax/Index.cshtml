@@ -1,9 +1,8 @@
-﻿@model ERP_Compact.Models.AssetCategoryViewModel
+﻿@model ERP_Compact.Models.TaxViewModel
 @{
-    ViewBag.Title = "Asset Category";
+    ViewBag.Title = "Tax";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <link href="~/Content/datatables/dataTables.bootstrap.css" rel="stylesheet" />
 <script src="~/Scripts/jquery.dataTables.js"></script>
 <script src="~/Scripts/dataTables.bootstrap.js"></script>
@@ -13,7 +12,7 @@
             $('#ctable').dataTable();
             var path_to_delete;
 
-            $(".deleteAssetCat").click(function (e) {
+            $(".deleteTax").click(function (e) {
                 path_to_delete = $(this).data('path');
             });
             $('#btnContinueDelete').click(function () {
@@ -22,22 +21,22 @@
         });
 
 </script>
-<script src="~/Scripts/AutoComplete/scAssetCategory.js"></script>
+<script src="~/Scripts/AutoComplete/scTax.js"></script>
 <script type="text/javascript">
         $(document).ready(function () {
             $('#msgSuccess').hide();
 
             $(".discussion-comment").click(function (event) {
-                $('#CategoryKey').val($(this).attr("discussion-id"));
+                $('#TaxKey').val($(this).attr("discussion-id"));
                 $('#myModal').modal('show');
                 $('#btnUpdate').show();
                 $('#btnAdd').hide();
-                var w = "#CategoryKey";
-                var url = '@Url.Content("~/")' + "Utility/LoadAssetCategory";
+                var w = "#TaxKey";
+                var url = '@Url.Content("~/")' + "Utility/LoadTax";
                 $.getJSON(url, { SelectID: $(w).val() }, function (data) {
 
-                    $('#CategoryID').val(data["CategoryID"]);
-                    $('#CategoryName').val(data["CategoryName"]);
+                    $('#TaxID').val(data["TaxID"]);
+                    $('#Amt').val(data["Amt"]);
 
 
                 });
@@ -54,32 +53,32 @@
     <div class="panel-heading">
 
         <h2>
-            List of Asset Category
+            List of Tax
         </h2>
 
     </div>
     <div class="panel-body">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Asset Category</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Tax</button>
     </div>
     <div class="panel-body">
 
         <table class="table table-bordered table-hover datatable-highlight" id="ctable">
-            <thead><tr><th>Category ID</th><th>Category Name</th><th>Action</th></tr></thead>
+            <thead><tr><th>Tax ID</th><th>Amount</th><th>Action</th></tr></thead>
             <tbody>
 
-                @foreach (var item in Model.AssetCategoryList)
+                @foreach (var item in Model.TaxList)
             {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.CategoryID)
+                            @Html.DisplayFor(modelItem => item.TaxID)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.CategoryName)
+                            @Html.DisplayFor(modelItem => item.Amt)
                         </td>
                         <td>
-                            <a class="discussion-comment btn" discussion-id="@item.CategoryKey" href="#">Edit</a> ||
+                            <a class="discussion-comment btn" discussion-id="@item.TaxKey" href="#">Edit</a> ||
 
-                            <a id="deleteAssetCat" class="deleteAssetCat btn" data-target="#basic" data-toggle="modal" data-path="@Url.Action("Delete", "MgtAssetCategory",new{ID=item.CategoryKey})">Delete</a>
+                            <a id="deleteTax" class="deleteTax btn" data-target="#basic" data-toggle="modal" data-path="@Url.Action("Delete", "MgtTax",new{ID=item.TaxKey})">Delete</a>
 
                         </td>
                     </tr>
@@ -93,22 +92,22 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h4 class="modal-title" id="myModalLabel">Add New Asset Category</h4>
+                    <h4 class="modal-title" id="myModalLabel">Add New Tax</h4>
                 </div>
                 <div class="modal-body">
                     <form>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.CategoryID, "Category ID")
-                            @Html.HiddenFor(model => model.CategoryKey, new { id = "CategoryKey" })
-                            @Html.TextBoxFor(model => model.CategoryID, new { placeholder = " Category ID", id = "CategoryID", @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.TaxID, "Tax ID")
+                            @Html.HiddenFor(model => model.TaxKey, new { id = "TaxKey" })
+                            @Html.TextBoxFor(model => model.TaxID, new { placeholder = " Tax ID", id = "TaxID", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TaxID, "", new { @class = "text-danger" })
 
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.CategoryName, "Category Name")
-                            @Html.TextBoxFor(model => model.CategoryName, new { @required = "required", placeholder = " Category Name", id = "CategoryName", @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.Amt, "Amount")
+                            @Html.TextBoxFor(model => model.Amt, new { @required = "required", placeholder = " Amount", id = "Amt", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Amt, "", new { @class = "text-danger" })
 
                         </div>
 
@@ -142,6 +141,8 @@
     </div>
 
 </div>
+
+
 
 
 

@@ -228,6 +228,18 @@ namespace ERP_Compact.Controllers
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return result;
         }
+        public ActionResult LoadTax(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            TaxViewModel obj = new TaxViewModel();
+            Tax m = db.Tax.Find(SelectID);
+            obj.TaxKey = m.TaxKey;
+            obj.TaxID = m.TaxID;
+            obj.Amt = m.Amt;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
         public JsonResult GetDistrictsOfDivision (Guid divisionKey)
         {
             var res = db.District.Where(d => d.DivisionKey == divisionKey && d.IsDelete == false).Select( x=> new { x.DistrictKey, x.DistrictName }).ToList();
