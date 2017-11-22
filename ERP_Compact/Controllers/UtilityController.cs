@@ -188,6 +188,58 @@ namespace ERP_Compact.Controllers
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return result;
         }
+        public ActionResult LoadStoreRows(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            StoreRowsViewModel obj = new StoreRowsViewModel();
+            Row_Store m = db.Row_Store.Find(SelectID);
+            obj.RowKey = m.RowKey;
+            obj.RowID = m.RowID;
+            obj.RowName = m.RowName;
+            obj.RowLevel = m.RowLevel;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
+        public ActionResult LoadStoreShelf(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            StoreShelfViewModel obj = new StoreShelfViewModel();
+            Shelf m = db.Shelf.Find(SelectID);
+            obj.ShelfKey = m.ShelfKey;
+            obj.ShelfID = m.ShelfID;
+            obj.ShelfName = m.ShelfName;
+            obj.ShelfLevel = m.ShelfLevel;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
+
+        public ActionResult LoadSubModule(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            SubModuleViewModel obj = new SubModuleViewModel();
+            SubModule m = db.SubModule.Find(SelectID);
+            obj.SubModuleID = m.SubModuleID;
+            obj.ModuleID = m.ModuleID;
+            obj.SubModuleName = m.SubModuleName;
+            obj.SubModuleLevel = m.SubModuleLevel;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
+        public ActionResult LoadTax(Guid SelectID)
+        {
+            JsonResult result = new JsonResult();
+            TaxViewModel obj = new TaxViewModel();
+            Tax m = db.Tax.Find(SelectID);
+            obj.TaxKey = m.TaxKey;
+            obj.TaxID = m.TaxID;
+            obj.Amt = m.Amt;
+            result.Data = obj;
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
+        }
         public JsonResult GetDistrictsOfDivision (Guid divisionKey)
         {
             var res = db.District.Where(d => d.DivisionKey == divisionKey && d.IsDelete == false).Select( x=> new { x.DistrictKey, x.DistrictName }).ToList();

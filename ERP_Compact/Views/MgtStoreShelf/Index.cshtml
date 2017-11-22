@@ -1,6 +1,6 @@
-﻿@model ERP_Compact.Models.AssetCategoryViewModel
+﻿@model ERP_Compact.Models.StoreShelfViewModel
 @{
-    ViewBag.Title = "Asset Category";
+    ViewBag.Title = "Store Shelf";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,7 +13,7 @@
             $('#ctable').dataTable();
             var path_to_delete;
 
-            $(".deleteAssetCat").click(function (e) {
+            $(".deleteStoreShelf").click(function (e) {
                 path_to_delete = $(this).data('path');
             });
             $('#btnContinueDelete').click(function () {
@@ -22,27 +22,32 @@
         });
 
 </script>
-<script src="~/Scripts/AutoComplete/scAssetCategory.js"></script>
+<script src="~/Scripts/AutoComplete/scStoreShelf.js"></script>
 <script type="text/javascript">
         $(document).ready(function () {
             $('#msgSuccess').hide();
 
             $(".discussion-comment").click(function (event) {
-                $('#CategoryKey').val($(this).attr("discussion-id"));
+                $('#ShelfKey').val($(this).attr("discussion-id"));
                 $('#myModal').modal('show');
                 $('#btnUpdate').show();
                 $('#btnAdd').hide();
-                var w = "#CategoryKey";
-                var url = '@Url.Content("~/")' + "Utility/LoadAssetCategory";
+                var w = "#ShelfKey";
+                var url = '@Url.Content("~/")' + "Utility/LoadStoreShelf";
                 $.getJSON(url, { SelectID: $(w).val() }, function (data) {
 
-                    $('#CategoryID').val(data["CategoryID"]);
-                    $('#CategoryName').val(data["CategoryName"]);
-
-
+                    $('#ShelfID').val(data["ShelfID"]);
+                    $('#ShelfName').val(data["ShelfName"]);
+                    $('#ShelfLevel').val(data["ShelfLevel"]);
                 });
 
+            });
 
+            $(".digit").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    $("#errormsg").html("Digits Only").show().fadeOut("slow");
+                    return false;
+                }
             });
     });
 
@@ -54,32 +59,35 @@
     <div class="panel-heading">
 
         <h2>
-            List of Asset Category
+            List of Store Shelf
         </h2>
 
     </div>
     <div class="panel-body">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Asset Category</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Store Shelf</button>
     </div>
     <div class="panel-body">
 
         <table class="table table-bordered table-hover datatable-highlight" id="ctable">
-            <thead><tr><th>Category ID</th><th>Category Name</th><th>Action</th></tr></thead>
+            <thead><tr><th>Shelf ID</th><th>Shelf Name</th><th>Shelf Level</th><th>Action</th></tr></thead>
             <tbody>
 
-                @foreach (var item in Model.AssetCategoryList)
+                @foreach (var item in Model.StoreShelfList)
             {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.CategoryID)
+                            @Html.DisplayFor(modelItem => item.ShelfID)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.CategoryName)
+                            @Html.DisplayFor(modelItem => item.ShelfName)
                         </td>
                         <td>
-                            <a class="discussion-comment btn" discussion-id="@item.CategoryKey" href="#">Edit</a> ||
+                            @Html.DisplayFor(modelItem => item.ShelfLevel)
+                        </td>
+                        <td>
+                            <a class="discussion-comment btn" discussion-id="@item.ShelfKey" href="#">Edit</a> ||
 
-                            <a id="deleteAssetCat" class="deleteAssetCat btn" data-target="#basic" data-toggle="modal" data-path="@Url.Action("Delete", "MgtAssetCategory",new{ID=item.CategoryKey})">Delete</a>
+                            <a id="deleteStoreShelf" class="deleteStoreShelf btn" data-target="#basic" data-toggle="modal" data-path="@Url.Action("Delete", "MgtStoreShelf",new{ID=item.ShelfKey})">Delete</a>
 
                         </td>
                     </tr>
@@ -93,25 +101,31 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h4 class="modal-title" id="myModalLabel">Add New Asset Category</h4>
+                    <h4 class="modal-title" id="myModalLabel">Add New Store Shelf</h4>
                 </div>
                 <div class="modal-body">
                     <form>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.CategoryID, "Category ID")
-                            @Html.HiddenFor(model => model.CategoryKey, new { id = "CategoryKey" })
-                            @Html.TextBoxFor(model => model.CategoryID, new { placeholder = " Category ID", id = "CategoryID", @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.ShelfID, "Shelf ID")
+                            @Html.HiddenFor(model => model.ShelfKey, new { id = "ShelfKey" })
+                            @Html.TextBoxFor(model => model.ShelfID, new { placeholder = " Shelf ID", id = "ShelfID", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ShelfID, "", new { @class = "text-danger" })
 
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.CategoryName, "Category Name")
-                            @Html.TextBoxFor(model => model.CategoryName, new { @required = "required", placeholder = " Category Name", id = "CategoryName", @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.ShelfName, "Shelf Name")
+                            @Html.TextBoxFor(model => model.ShelfName, new { @required = "required", placeholder = " Shelf Name", id = "ShelfName", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ShelfName, "", new { @class = "text-danger" })
 
                         </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ShelfLevel, "Shelf Level")
+                            @Html.TextBoxFor(model => model.ShelfLevel, new { @required = "required", placeholder = " Shelf Level ", id = "ShelfLevel", @class = "digit form-control" })
+                            @Html.ValidationMessageFor(model => model.ShelfLevel, "", new { @class = "text-danger" })
+                            <span id="errormsg" style="color:orangered;text-decoration:solid"></span>
 
+                        </div>
                     </form>
                     <div class="form-group" id="msgSuccess"><h4 class="alert alert-danger">Data is successfully Saved on database.</h4></div>
                 </div>
@@ -142,6 +156,5 @@
     </div>
 
 </div>
-
 
 
