@@ -225,6 +225,7 @@
     <Compile Include="Controllers\MgtSubModuleController.cs" />
     <Compile Include="Controllers\MgtSupplierController.cs" />
     <Compile Include="Controllers\MgtTaxController.cs" />
+    <Compile Include="Controllers\MgtUnitController.cs" />
     <Compile Include="Controllers\MgtWarehouseController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
     <Compile Include="DAL\ManageGIS.cs" />
@@ -348,6 +349,7 @@
     <Compile Include="Models\Unit.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UnitViewModel.cs" />
     <Compile Include="Models\Upazilla.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -1085,6 +1087,7 @@
     <Content Include="Scripts\AutoComplete\scStoreShelf.js" />
     <Content Include="Scripts\AutoComplete\scSubModule.js" />
     <Content Include="Scripts\AutoComplete\scTax.js" />
+    <Content Include="Scripts\AutoComplete\scUnit.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -1398,6 +1401,7 @@
     <Content Include="Views\MgtStoreShelf\Index.cshtml" />
     <Content Include="Views\MgtSubModule\Index.cshtml" />
     <Content Include="Views\MgtTax\Index.cshtml" />
+    <Content Include="Views\MgtUnit\Index.cshtml" />
     <Content Include="Views\MgtSupplier\Index.cshtml" />
     <Content Include="Views\MgtSupplier\Create.cshtml" />
     <Content Include="Views\MgtSupplier\Edit.cshtml" />
