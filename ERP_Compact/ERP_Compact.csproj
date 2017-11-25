@@ -226,6 +226,7 @@
     <Compile Include="Controllers\MgtSupplierController.cs" />
     <Compile Include="Controllers\MgtTaxController.cs" />
     <Compile Include="Controllers\MgtUnitController.cs" />
+    <Compile Include="Controllers\MgtUserControllerController.cs" />
     <Compile Include="Controllers\MgtWarehouseController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
     <Compile Include="DAL\ManageGIS.cs" />
@@ -369,6 +370,7 @@
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserModuleClass.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\Warehouse.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -1406,11 +1408,16 @@
     <Content Include="Views\MgtSupplier\Create.cshtml" />
     <Content Include="Views\MgtSupplier\Edit.cshtml" />
     <Content Include="Views\MgtSupplier\Details.cshtml" />
+    <Content Include="Views\MgtUser\Create.cshtml" />
+    <Content Include="Views\MgtUser\Details.cshtml" />
+    <Content Include="Views\MgtUser\Edit.cshtml" />
+    <Content Include="Views\MgtUser\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\MgtSotreRaws\" />
+    <Folder Include="Views\MgtUserController\" />
     <Folder Include="Views\Utility\" />
   </ItemGroup>
   <ItemGroup>
